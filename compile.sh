@@ -1,0 +1,1 @@
+cythonize -3 -i tempylate/*.pyx
