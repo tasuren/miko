@@ -2,48 +2,150 @@
 
 from __future__ import annotations
 
-from typing import Callable, Union, Optional, Any
+from typing import Callable, Union, Optional, Any, DefaultDict
 
 from importlib._bootstrap_external import _code_type
 from inspect import cleandoc
 import ast
 
-from secrets import token_hex
+from asyncio import AbstractEventLoop
+from collections import defaultdict
 
-from .filters import _afilters, _bfilters
-from .builtins import Builtin, _builtins
+from .utils import _executor_function
 from .parser import extract_blocks
+from .filters import _builtins
 
 
-# The type of a function that wraps the code of block.
+__all__ = (
+    "TypeTempylateFunction", "caches", "BeforeFilter", "AfterFilter",
+    "DEFAULT_BEFORE_FILTERS", "DEFAULT_AFTER_FILTERS", "DEFAULT_BUILTINS",
+    "Block", "BlockManager", "blocker", "Template"
+)
 TypeTempylateFunction = Callable[..., Union[str, Any]]
-# からからからのからデータ
-_NULL: tuple[str, dict] = (f"__NULL_{token_hex(4)}_DATA__", {})
-# テンプレートにあったブロックを実行するための関数
+"The type of a function that wraps the code of block."
 _BLOCK_FUNCTION_CODE = "def __tempylate_function(<<args>>):..."
-# 読み込んだテンプレートのブロックのコードのキャッシュ
-caches: dict[
-    tuple[str, int], tuple[str, dict[tuple[str, ...], TypeTempylateFunction]]
-] = {}
-# Filterの型
-BeforeFilter = Callable[[dict], dict]
-AfterFilter = Callable[[str], str]
-# デフォルトのフィルター
-DEFAULT_BEFORE_FILTERS: list[BeforeFilter] = _bfilters
-DEFAULT_AFTER_FILTERS: list[AfterFilter] = _afilters
-# デフォルトのビルトイン
+# テンプレートにあったブロックを実行するための関数
 DEFAULT_BUILTINS = _builtins
+"Default builtins."
+
+
+class Block:
+    """This class represents a block.  
+    When instantiated, it compiles the string of the passed block.
+
+    Parameters
+    ----------
+    text : str
+        The string of the block.
+    args : tuple[str, ...]
+        A tuple of the names of the values that would be passed to the template.
+    path : str, default ""
+        The path to the template file where the block is located.  
+        This is to make it easier to find the error location when an error occurs in the code in the block.  
+        So, even if it doesn't make sense, it will work fine.
+    index : int
+        The number of how many blocks.  
+        This is also just used to make it easier to find the error location when an error occurs in the code within a block."""
+
+    def __init__(
+        self, text: str, args: tuple[str, ...], *, path: str = "", index: int = 0
+    ):
+        self.text, self.path, self.index, self.args = text, path, index, args
+
+        # ブロック内のコードを実行する関数を構成してバイトコンパイルする。
+        code = ast.parse(_BLOCK_FUNCTION_CODE.replace("<<args>>", ",".join(self.args), 1))
+        assert isinstance(code.body[-1], ast.FunctionDef)
+        del code.body[-1].body[-1]
+        cleaned_block = cleandoc(self.text)
+        if isinstance((block_code := ast.parse(cleaned_block)).body[-1], ast.Expr):
+            # `%% user.name %%`のようにテンプレートに文字列を配置できるようにするためにもし最後に`return`がなければ配置する。
+            block_code.body.append(ast.Return(block_code.body.pop(-1).value)) # type: ignore
+        code.body[-1].body.extend(block_code.body)
+        ast.fix_missing_locations(code)
+        code = compile(code, f"<{self.index}th block of {self.path} template>", "exec")
+        assert isinstance(code, _code_type)
+        # 関数を作る。
+        namespace: dict[str, Any] = {}
+        exec(code, namespace)
+        self.function: TypeTempylateFunction = namespace["__tempylate_function"]
+
+    def __str__(self) -> str:
+        return f"<Block text={self.text} args={self.args} path={self.path} function={self.function}>"
+
+
+class BlockManager:
+    """This is a cache management class that takes a block from a template string, compiles the code for that block, and caches it.  
+    It is instantiated internally and used in a variable named `blocker`.
+
+    Attributes
+    ----------
+    caches : DefaultDict[str, dict[tuple[str, ...], dict[int, Block]]]"""
+
+    caches: DefaultDict[str, dict[tuple[str, ...], dict[int, Block]]] = \
+        defaultdict(lambda : defaultdict(dict))
+
+    def get_block(
+        self, path: str, args: tuple[str, ...], index: int, text: str
+    ) -> Block:
+        """Turn the string in the passed block into a block object.  
+        It also creates a cache and returns the cache the next time the same string is passed.
+
+        Parameters
+        ----------
+        path : str
+            The path of the file for that template string.  
+            If you give a non-file string, put the name of the content of the string, because this path is used for naming associations in cache.  
+            So make sure it is unique for each template string you pass, or you will end up creating a cache every time.
+        args : tuple[str, ...]
+            A tuple of the names of the values that would be passed to the template.  
+            This is also used to associate blocks in the cache, so it shouldn't be something that changes all the time.  
+            If this method is called on the same template and this args is always changing, it will create a cache everytime.
+        index : int
+            The number of how many blocks are in the block.  
+            This is associated in the block cache and must be unique for each block.  
+            It is also used for error messages for code in the block.
+        text : str
+            The string of the block."""
+        block, update = self.caches[path][args].get(index), False
+        if block is None:
+            update = True
+        elif block.text != text:
+            # もしブロック内のコードが変更されている場合はそのブロックがあるキャッシュを全て削除する。
+            del self.caches[path]
+            update = True
+        if update:
+            self.caches[path][args][index] = block = Block(
+                text, args, path=path, index=index
+            )
+        assert block is not None
+        return block
+blocker = BlockManager()
 
 
 class Template:
+    """Template class.  
+
+    Parameters
+    ----------
+    template : str
+        Template text.
+    path : str, default "unknown"
+        The path to the file of template text.  
+        This is not a requirement.  
+        It is only used for error messages.
+    builtins : dict[str, Builtin], default DEFAULT_BUILTINS
+        A dictionary of names and values of variables to be passed by default when executing blocks in the template.
+
+    Attributes
+    ----------
+    template : str
+    path : str
+    builtins : dict[str, Builtin]"""
+
     def __init__(
-        self, template: str, *, path: str = "unknown", cache: bool = True,
-        before_filters: list[BeforeFilter] = DEFAULT_BEFORE_FILTERS,
-        after_filters: list[AfterFilter] = DEFAULT_AFTER_FILTERS,
-        builtins: dict[str, Builtin] = DEFAULT_BUILTINS
+        self, template: str, *, path: str = "unknown", builtins: dict = DEFAULT_BUILTINS
     ):
-        self.template, self.path, self.cache = template, path, cache
-        self.before_filters, self.after_filters = before_filters, after_filters
+        self.template, self.path = template, path
         self.builtins = builtins
         self.rendered: Optional[str] = None
 
@@ -62,68 +164,13 @@ class Template:
         with open(path, "r") as f:
             return cls(f.read(), path=path, *args, **kwargs)
 
-    def compile_block(
-        self, block: str, args: tuple[str, ...], index: int = 0
-    ) -> TypeTempylateFunction:
-        """Compile code of block.
-
-        Parameters
-        ----------
-        block : str
-            The block in the template.
-        args : Iterable[str]
-            Iterable containing the names of variables that will be passed in the block.
-        index : int
-            Index number of the block used for the exception message.
-
-        Returns
-        -------
-        TypeTempylateFunction
-
-        Notes
-        -----
-        If found the a cache, it will return a cache.  
-        (Cache include to `tempylate.caches`.)"""
-        already = False
-        if (cache := caches.get((self.path, index), _NULL))[0] == block:
-            already = True
-            if cache := cache[1].get(args): # type: ignore
-                # 既にキャッシュがあるならそれを返す。
-                return cache
-        # もしキャッシュに存在しないしないブロックの場合はブロックのコードオブジェクトを作る。
-        code = ast.parse(_BLOCK_FUNCTION_CODE.replace("<<args>>", ",".join(args), 1))
-        assert isinstance(code.body[-1], ast.FunctionDef)
-        del code.body[-1].body[-1]
-        cleaned_block = cleandoc(block)
-        if isinstance((block_code := ast.parse(cleaned_block)).body[-1], ast.Expr):
-            # `%% user.name %%`のようにテンプレートに文字列を配置できるようにするためにもし最後に`return`がなければ配置する。
-            block_code.body.append(ast.Return(block_code.body.pop(-1).value)) # type: ignore
-        code.body[-1].body.extend(block_code.body)
-        ast.fix_missing_locations(code)
-        code = compile(code, f"<{index}th block of {self.path} template>", "exec")
-        assert isinstance(code, _code_type)
-        # 関数を作る。
-        namespace: dict[str, Any] = {}
-        exec(code, namespace)
-        function = namespace["__tempylate_function"]
-        if self.cache:
-            # キャッシュを保存しておく。
-            if already:
-                caches[(self.path, index)][1][args] = function
-            else:
-                caches[(self.path, index)] = (block, {args: function})
-        return function
-
-    def render(
-        self, include_globals: bool = True, options: dict[str, dict] = {}, **kwargs
-    ) -> str:
+    def render(self, include_globals: bool = True, **kwargs) -> str:
         """Render the template.
 
         Parameters
         ----------
         include_globals : bool, default True
             Whether to include the data in the dictionary that can be retrieved by `globals()` in the variables passed to the code in the block.
-        option : 
         **kwargs
             This is a dictionary of variable names and values that can be used in the Python code of a block of templates.
 
@@ -140,18 +187,29 @@ class Template:
         # グローバルなものを混ぜる。
         if include_globals:
             kwargs.update(globals())
-        # Bフィルターを実行する。
-        for bfilter in self.before_filters:
-            kwargs = bfilter(kwargs)
-        kwargs["template"] = self.template
+        # ビルトインを混ぜる。
+        kwargs.update(self.builtins)
         # ブロックの中身を実行していく。
-        for index, block in enumerate(extract_blocks(self.template)):
-            text = self.compile_block(block, tuple(kwargs.keys()), index)(**kwargs)
-            for afilter in self.after_filters:
-                text = afilter(text)
-            kwargs["template"] = kwargs["template"].replace(
-                "".join((r"^^", block, r"^^")),
-                text if isinstance(text, str) else str(text),
-                1
-            )
-        return kwargs["template"]
+        args = tuple(kwargs.keys())
+        return "".join(
+            blocker.get_block(self.path, args, index, text).function(**kwargs)
+            if is_block else text
+            for index, is_block, text in extract_blocks(self.template)
+        )
+
+    async def aiorender(
+        self, *args, eloop: Optional[AbstractEventLoop] = None, **kwargs
+    ) -> str:
+        """This is an asynchronous version of `render`.  
+        Use the `run_in_executor` of event loop.
+
+        Parameters
+        ----------
+        *args
+            Arguments to pass to `render`.
+        eloop : AbstractEventLoop, optional
+            The event loop to use.  
+            If not specified, it will be obtained automatically.
+        **kwargs
+            Keyword arguments to pass to `render`."""
+        return await _executor_function(self.render, eloop, *args, **kwargs)

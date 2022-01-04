@@ -2,6 +2,11 @@
 
 from __future__ import annotations
 
+from typing import Optional
+
+from asyncio import AbstractEventLoop
+
+from .utils import _executor_function
 from .template import Template, Any
 
 
@@ -39,6 +44,11 @@ class BaseManager:
     def render(self, path: str, **kwargs) -> Any:
         raise NotImplementedError()
 
+    async def aiorender(
+        self, *args, loop: Optional[AbstractEventLoop] = None, **kwargs
+    ) -> Any:
+        raise NotImplementedError()
+
 
 class Manager(BaseManager):
     """The class to maange templates.  
@@ -71,3 +81,20 @@ class Manager(BaseManager):
         manager.render("users.html", title=title, users=users)
         ```"""
         return self.get_template(path).render(**kwargs)
+
+    async def aiorender(
+        self, *args, eloop: Optional[AbstractEventLoop] = None, **kwargs
+    ) -> str:
+        """This is an asynchronous version of version for `render`.  
+        Use the `run_in_executor` of event loop.
+
+        Parameters
+        ----------
+        *args
+            Arguments to pass to `render`.
+        eloop : AbstractEventLoop, optional
+            The event loop to use.  
+            If not specified, it will be obtained automatically.
+        **kwargs
+            Keyword arguments to pass to `render`."""
+        return await _executor_function(self.render, eloop, *args, **kwargs)

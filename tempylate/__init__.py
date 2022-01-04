@@ -1,5 +1,6 @@
+""".. include:: ../README.md"""
 # tempylate by tasuren
 
-from .template import Template, caches
+from .template import Template, Block, BlockManager, blocker
 from .manager import Manager
-from . import builtins
+from . import filters
