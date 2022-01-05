@@ -10,9 +10,22 @@ from .utils import _executor_function
 from .template import Template, Any
 
 
-class BaseManager:
-    """This class is the base class for `Manager` or other.  
-    Parameters are same as `Manager`."""
+class Manager:
+    """Class for managing templates.  
+    Templates rendered using this class will automatically be passed a `manager` variable containing an instance of this class.
+
+    Parameters
+    ----------
+    *args
+        Arguments to pass to `Template`.
+    template_cls : Template, default Template
+        This is the `Template` class used to create instances of `Template`.  
+        If you extend the `Template` class and want to use the extended class with `Manager`, use the box argument.
+    extends : dict[str, Any], optional
+        A dictionary of names and values of attributes to be attached to a `Template` class when it is instantiated.  
+        This makes it easy to extend `Template` and access its attributes from within a template via its instance.
+    **kwargs
+        Keyword arguments to pass to `Template`."""
 
     def __init__(
         self, *args, template_cls: Type[Template] = Template,
@@ -44,31 +57,6 @@ class BaseManager:
                 setattr(template, key, value)
         return template
 
-    def render(self, path: str, **kwargs) -> Any:
-        """"""
-        raise NotImplementedError()
-
-    async def aiorender(
-        self, *args, loop: Optional[AbstractEventLoop] = None, **kwargs
-    ) -> Any:
-        raise NotImplementedError()
-
-
-class Manager(BaseManager):
-    """
-    Parameters
-    ----------
-    *args
-        Arguments to pass to `Template`.
-    template_cls : Template, default Template
-        This is the `Template` class used to create instances of `Template`.  
-        If you extend the `Template` class and want to use the extended class with `Manager`, use the box argument.
-    extends : dict[str, Any], optional
-        A dictionary of names and values of attributes to be attached to a `Template` class when it is instantiated.  
-        This makes it easy to extend `Template` and access its attributes from within a template via its instance.
-    **kwargs
-        Keyword arguments to pass to `Template`."""
-
     def render(self, path: str, **kwargs) -> str:
         """Render the file from the template.
 
@@ -89,14 +77,15 @@ class Manager(BaseManager):
 
         Examples
         --------
-        #### Template
-        ```html
-        <title>^^ title ^^</title>
-        ```
-        #### Backend
-        ```python
-        manager.render("users.html", title=title)
-        ```"""
+        .. code-block:: html
+          :caption: Template
+
+          <title>^^ title ^^</title>
+
+        .. code-block:: python
+          :caption: Backend
+
+          manager.render("users.html", title=title)"""
         return self.get_template(path).render(**kwargs)
 
     async def aiorender(

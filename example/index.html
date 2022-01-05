@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>miko simple example page</title>
+</head>
+<body>
+  ^^
+    if logged_in:
+      return f"""
+      <h1>{user.name}'s Profile</h1>
+      Comment: {user.comment}
+      """
+    else:
+      return "<p>Please login.</p>"
+  ^^
+</body>
+</html>

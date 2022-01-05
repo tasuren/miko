@@ -6,8 +6,3 @@ test.*
 .*
 *.*-workspace
 *.*-project
-
-# Compiled
-*.c
-*.cpython*
-build

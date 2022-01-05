@@ -1,4 +1,3 @@
-""".. include:: ../README.md"""
 # miko by tasuren
 
 from .template import (

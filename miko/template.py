@@ -155,14 +155,6 @@ class Template:
     __original_kwargs__: dict
     __option_kwargs__: dict
 
-    def __new__(cls, *_, **kwargs):
-        # キーワード引数を取るだけ。
-        self = super().__new__(cls)
-        self.__original_kwargs__ = kwargs
-        self.__option_kwargs__ = kwargs.copy()
-        del self.__option_kwargs__["path"]
-        return self
-
     def __init__(
         self, template: str, *, path: str = "unknown",
         builtins: dict[str, Any] = DEFAULT_BUILTINS.copy(),
@@ -170,6 +162,14 @@ class Template:
     ):
         self.template, self.path = template, path
         self.builtins, self.adjustors = builtins, adjustors
+
+    def __new__(cls, *_, **kwargs):
+        # キーワード引数を取るだけ。
+        self = super().__new__(cls)
+        self.__original_kwargs__ = kwargs
+        self.__option_kwargs__ = kwargs.copy()
+        del self.__option_kwargs__["path"]
+        return self
 
     @classmethod
     def from_file(cls, path: str, *args, **kwargs) -> Template:
@@ -258,51 +258,54 @@ class Template:
 
         Examples
         --------
-        ### base.html
-        ```html
-        <!DOCTYPE html>
-        <html>
-        <head>
-            ^^ script ^^
-        </head>
-        <body>
-            <header>My blog</header>
-            <div class="title">^^ title ^^</div>
-                ^^ content ^^
-            <footer>(C) 2022 tasuren</footer>
-        </body>
-        </html>
-        ```
-        ### page1.html
-        ```python
-        ^^ self.extends(
-            "base.html", script="", title="First page of my blog.",
-            content=\"\"\"
-                Hi, I'm tasuren.
-            \"\"\"
-        ) ^^
-        ```
+        .. code-block:: html
+            :caption: base.html
+
+            <!DOCTYPE html>
+            <html>
+            <head>
+                ^^ script ^^
+            </head>
+            <body>
+                <header>My blog</header>
+                <div class="title">^^ title ^^</div>
+                    ^^ content ^^
+                <footer>(C) 2022 tasuren</footer>
+            </body>
+            </html>
+
+        .. code-block:: python
+            :caption: page1.html
+
+            ^^ self.extends(
+                "base.html", script="", title="First page of my blog.",
+                content=\"\"\"
+                    Hi, I'm tasuren.
+                \"\"\"
+            ) ^^
 
         Notes
         -----
         If you are extending a web page, the arguments to `extends` may seem to be too long.  
         In such a case, when instantiating the `Manager` class, you can put a function that executes its short `extends` method in the `extends` argument.  
         Like bellow:
-        #### Backend
-        ```python
-        def blog(title, content, script=""):
-            return template.extends(
-                "base.html", script=script, title=title, content=content
-            )
 
-        manager = miko.Manager(extends={"blog": blog})
-        ```
-        #### HTML
-        ```python
-        ^^ blog(
-            "My 16th birthday.", \"\"\"
-                Today I had my birthday.
-            \"\"\"
-        ) ^^
-        ```"""
+        .. code-block:: python
+            :caption: Backend
+
+            def blog(title, content, script=""):
+                return template.extends(
+                    "base.html", script=script, title=title, content=content
+                )
+
+            manager = miko.Manager(extends={"blog": blog})
+
+        .. code-block:: python
+            :caption: HTML
+
+            ^^ blog(
+                "My 16th birthday.", \"\"\"
+                    Today I had my birthday.
+                \"\"\"
+            ) ^^"""
         return self.__class__.from_file(path, **self.__option_kwargs__).render(**kwargs)

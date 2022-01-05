@@ -52,9 +52,9 @@ def truncate(text: str, length: int = 255, end: str = "...") -> str:
 
     Examples
     --------
-    ```html
-    <meta property="og:title" content="^^ truncate(title, 30) ^^">
-    ```"""
+    .. code-block:: html
+
+      <meta property="og:title" content="^^ truncate(title, 30) ^^">"""
     return f"{text[:length]}{end}"
 
 
