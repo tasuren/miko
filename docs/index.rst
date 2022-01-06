@@ -14,3 +14,11 @@ miko is a pythonic template engine that is little, lightweight and fast.
    introduction
    quickstart
    miko
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Links:
+
+   GitHub <https://github.com/tasuren/miko>
+   PyPi <https://pypi.org/project/miko-tpl/>
+   Document <https://miko.readthedocs.io/en/latest/>

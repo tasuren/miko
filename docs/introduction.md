@@ -50,7 +50,7 @@ You can contribute on the development of miko in the GitHub repository.
 If you send a pull request, please keep the following in mind.  
 The source code is written in such a way that it is 45% compliant with PEP8.  
 I would like you to keep the overall style of the source code as unchanged as possible.  
-GitHub: https://github.com/tasuren/miko
+GitHub: [https://github.com/tasuren/miko](https://github.com/tasuren/miko)
 
 ## License
 miko is available under the MIT license.  
