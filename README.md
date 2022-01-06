@@ -47,7 +47,7 @@ You can install it using pip.
 ```
 
 ## Documentation
-You can view the UserGuide and API reference of miko [here](https://miko.readthedocs.io/).
+You can view the UserGuide and API reference of miko [here](https://miko.readthedocs.io/en/latest).
 
 ## Contributing
 You can contribute on the development of miko in the GitHub repository.  
