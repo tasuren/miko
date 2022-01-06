@@ -196,7 +196,7 @@ msgstr ":meth:`miko.template.Template.render` に渡すキーワード引数で�
 
 #: miko.manager.Manager.render:9 of
 msgid "This method does the same thing as below."
-msgstr "このメソッド以下と同じことをします。"
+msgstr "このメソッド次と同じことをします。"
 
 #: miko.manager.Manager.render:18 of
 msgid "Template"
@@ -496,11 +496,11 @@ msgid ""
 "calls this function internally and put it in the argument ``extends`` of "
 "the :class:`miko.manager.Manager`. This way it will be like an alias and "
 "more efficient. For example, you can do something like the following."
-msgstr ""
-"もしかしたらウェブページを拡張していく際に ``extends`` "
+msgstr "もしかしたらウェブページを拡張していく際に ``extends`` "
 "の引数が長くなりすぎて面倒になるかもしれません。そういう時は :class:`miko.manager.Manager` "
 "クラスの引数 ``extends`` "
-"にこの関数を内部で呼び出す関数を作ってその関数を入れましょう。そうすればエイリアスのようになり効率的になります。例えば以下のような感じにできます。"
+"にこの関数を内部で呼び出す関数を作ってその関数を入れましょう。"
+"そうすればエイリアスのようになり効率的になります。例えば次のような感じにできます。"
 
 #: miko.template.Template.extends:57 of
 msgid "HTML"
@@ -508,7 +508,7 @@ msgstr ""
 
 #: ../../miko.rst:40
 msgid "miko.utils module"
-msgstr "miko.utils module"
+msgstr "miko.utils モジュール"
 
 #: ../../miko.rst:48
 msgid "Module contents"

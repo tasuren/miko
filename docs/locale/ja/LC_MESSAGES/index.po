@@ -20,7 +20,7 @@ msgstr ""
 
 #: ../../index.rst:10
 msgid "Contents:"
-msgstr "内容："
+msgstr ""
 
 #: ../../index.rst:18
 msgid "GitHub"

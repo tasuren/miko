@@ -57,7 +57,7 @@ msgstr "インストール"
 
 #: ../../introduction.md:12
 msgid "You can install it using pip.   `$ pip install miko-tpl`"
-msgstr "pipを使ってインストールすることができます"
+msgstr "pipを使ってインストールすることができます。"
 
 #: ../../introduction.md:15
 msgid "Examples"
@@ -80,7 +80,6 @@ msgid "Contributing"
 msgstr "コントリビューティング"
 
 #: ../../introduction.md:49
-#, fuzzy, python-format
 msgid ""
 "You can contribute on the development of miko in the GitHub repository."
 "   If you send a pull request, please keep the following in mind.   The "
