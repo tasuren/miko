@@ -22,7 +22,7 @@ with open(f"{NAME}/__init__.py", "r") as f:
 
 
 setup(
-    name=NAME,
+    name=f"{NAME}-tpl",
     version=version,
     description=DESCRIPTION,
     long_description=long_description,
