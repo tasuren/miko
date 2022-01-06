@@ -52,7 +52,7 @@ class Manager:
         template = self.template_cls.from_file(
             path, *(args or self.args), **(kwargs or self.kwargs)
         )
-        if self.extends is not None:
+        if self.extends:
             for key, value in self.extends.items():
                 setattr(template, key, value)
         return template

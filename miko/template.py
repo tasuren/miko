@@ -168,7 +168,8 @@ class Template:
         self = super().__new__(cls)
         self.__original_kwargs__ = kwargs
         self.__option_kwargs__ = kwargs.copy()
-        del self.__option_kwargs__["path"]
+        if "path" in self.__option_kwargs__:
+            del self.__option_kwargs__["path"]
         return self
 
     @classmethod
@@ -303,7 +304,7 @@ class Template:
         .. code-block:: python
             :caption: HTML
 
-            ^^ blog(
+            ^^ self.blog(
                 "My 16th birthday.", \"\"\"
                     Today I had my birthday.
                 \"\"\"
