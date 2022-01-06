@@ -11,7 +11,7 @@ import ast
 from asyncio import AbstractEventLoop
 from collections import defaultdict
 
-from .filters import _builtins, include
+from .builtins import _builtins, include
 from .utils import _executor_function
 from .parser import extract_blocks
 
@@ -79,8 +79,7 @@ class Block:
 
 
 class CacheManager:
-    """This is a cache management class that takes a block from a template string, compiles the code for that block, and caches it.  
-    It is instantiated internally and used in a variable named `caches`.
+    """This is a cache management class that takes a block from a template string, compiles the code for that block, and caches it.
 
     Attributes
     ----------
@@ -89,6 +88,7 @@ class CacheManager:
 
     block_caches: DefaultDict[str, dict[tuple[str, ...], dict[int, Block]]] = \
         defaultdict(lambda : defaultdict(dict))
+    "Dictionary where the cache is stored."
 
     def get_block(
         self, path: str, args: tuple[str, ...], index: int, text: str
@@ -142,7 +142,7 @@ class Template:
         A dictionary of names and values of variables to be passed by default when executing blocks in the template.
     adjustors : list[Adjustor], default DEFAULT_ADJUSTORS.copy()
         The functions in this list are called when the template is rendered.  
-        When the function is called, it is passed an instance of this class (`self`) and a dictionary containing the values passed to the template.  
+        When the function is called, it is passed an instance of this class (``self``) and a dictionary containing the values passed to the template.  
         This allows you to extend the value passed in.
 
     Attributes
@@ -180,9 +180,9 @@ class Template:
         path : str
             The path to the file.
         *args
-            Arguments to be used when instantiating the `Template`.
+            Arguments to be used when instantiating the :class:`miko.template.Template`.
         **kwargs
-            Keyword arguments to be used when instantiating the `Template`."""
+            Keyword arguments to be used when instantiating the :class:`miko.template.Template`."""
         return cls(include(path), path=path, *args, **kwargs)
 
     def render(self, include_globals: bool = True, **kwargs) -> str:
@@ -191,20 +191,20 @@ class Template:
         Parameters
         ----------
         include_globals : bool, default True
-            Whether to include the data in the dictionary that can be retrieved by `globals()` in the variables passed to the code in the block.
+            Whether to include the data in the dictionary that can be retrieved by ``globals()`` in the variables passed to the code in the block.
         **kwargs
             The name and value dictionary of the value to pass to the template.  
             Pass the value you want to use in the code in the block.
 
         Notes
         -----
-        Each time the key of `kwargs` changes, the code in the block is compiled.  
+        Each time the key of ``kwargs`` changes, the code in the block is compiled.  
         Functions created by compiling are cached.  
-        Also, if you `import` a large library in a block, the first rendering will be slower, but after that it won't be as bad due to Python's cache.
+        Also, if you ``import`` a large library in a block, the first rendering will be slower, but after that it won't be as bad due to Python's cache.
 
         Warnings
         --------
-        `**kwargs` to pass a value to the template so that the name of the value changes every time, it compiles the blocks in the template every time, which is slightly slower.  
+        ``**kwargs`` to pass a value to the template so that the name of the value changes every time, it compiles the blocks in the template every time, which is slightly slower.  
         (I don't think anyone would do that.)  
         So you should keep the value name constant.  
         Also, if the code in the block is made to be time-consuming, rendering will take time."""
@@ -227,34 +227,34 @@ class Template:
     async def aiorender(
         self, *args, eloop: Optional[AbstractEventLoop] = None, **kwargs
     ) -> str:
-        """This is an asynchronous version of `render`.  
-        Use the `run_in_executor` of event loop.
+        """This is an asynchronous version of :meth:`miko.template.Template.render`.  
+        Use the ``run_in_executor`` of event loop.
 
         Parameters
         ----------
         *args
-            Arguments to pass to `render`.
+            Arguments to pass to :meth:`miko.template.Template.render`.
         eloop : AbstractEventLoop, optional
             The event loop to use.  
             If not specified, it will be obtained automatically.
         **kwargs
-            Keyword arguments to pass to `render`."""
+            Keyword arguments to pass to :meth:`miko.template.Template.render`."""
         return await _executor_function(self.render, eloop, *args, **kwargs)
 
     def extends(self, path: str, **kwargs) -> str:
         """Renders the file in the passed path with this class instanced by the options passed when instantiating this class.  
         It is like extends in jinja.  
         This is provided to render and embed another template within the template.  
-        It seems the method of the class needs to be instantiated, which might seem cumbersome, the block is passed an instance of this class, `self`, when the template is rendered.  
+        It seems the method of the class needs to be instantiated, which might seem cumbersome, the block is passed an instance of this class, ``self``, when the template is rendered.  
         So you can use this method in a template as follows:  
-        `self.extends("template_path", keyword-arguments)`
+        ``self.extends("template_path", keyword-arguments)``
 
         Parameters
         ----------
         path : str
             The path to a template.
         **kwargs
-            Keyword arguments to pass to `render`.
+            Keyword arguments to pass to :meth:`miko.template.Template.render`.
 
         Examples
         --------
@@ -286,8 +286,8 @@ class Template:
 
         Notes
         -----
-        If you are extending a web page, the arguments to `extends` may seem to be too long.  
-        In such a case, when instantiating the `Manager` class, you can put a function that executes its short `extends` method in the `extends` argument.  
+        If you are extending a web page, the arguments to ``extends`` may seem to be too long.  
+        In such a case, when instantiating the :class:`miko.manager.Manager` class, you can put a function that executes its short ``extends`` method in the ``extends`` argument.  
         Like bellow:
 
         .. code-block:: python

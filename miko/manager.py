@@ -12,20 +12,20 @@ from .template import Template, Any
 
 class Manager:
     """Class for managing templates.  
-    Templates rendered using this class will automatically be passed a `manager` variable containing an instance of this class.
+    Templates rendered using this class will automatically be passed a ``manager`` variable containing an instance of this class.
 
     Parameters
     ----------
     *args
-        Arguments to pass to `Template`.
+        Arguments to pass to :class:`miko.template.Template`.
     template_cls : Template, default Template
-        This is the `Template` class used to create instances of `Template`.  
-        If you extend the `Template` class and want to use the extended class with `Manager`, use the box argument.
+        This is the :class:`miko.template.Template` class used to create instances of :class:`miko.template.Template`.  
+        If you extend the :class:`miko.template.Template` class and want to use the extended class with ``Manager``, use the box argument.
     extends : dict[str, Any], optional
-        A dictionary of names and values of attributes to be attached to a `Template` class when it is instantiated.  
-        This makes it easy to extend `Template` and access its attributes from within a template via its instance.
+        A dictionary of names and values of attributes to be attached to a :class:`miko.template.Template` class when it is instantiated.  
+        This makes it easy to extend :class:`miko.template.Template` and access its attributes from within a template via its instance.
     **kwargs
-        Keyword arguments to pass to `Template`."""
+        Keyword arguments to pass to :class:`miko.template.Template`."""
 
     def __init__(
         self, *args, template_cls: Type[Template] = Template,
@@ -43,12 +43,12 @@ class Manager:
         path : str
             The path to the file.
         **kwargs
-            Keyword arguments to pass to `Template.from_file`.  
-            By default, `kwargs` passed when you instantiate this class is used.
+            Keyword arguments to pass to :meth:`miko.template.Template.from_file`.  
+            By default, ``kwargs`` passed when you instantiate this class is used.
 
         Notes
         -----
-        When instantiating `Template`, the arguments passed to `Manager` will be used to."""
+        When instantiating :class:`miko.template.Template`, the arguments passed to :class:`miko.manager.Manager` will be used to."""
         template = self.template_cls.from_file(
             path, *(args or self.args), **(kwargs or self.kwargs)
         )
@@ -65,15 +65,16 @@ class Manager:
         path : str
             The path to the file.
         **kwargs
-            The keyword arguments to pass to `Template.render`.
+            The keyword arguments to pass to :meth:`miko.template.Template.render`.
 
         Notes
         -----
         This method does the same thing as below.
-        ```python
-        manager: Manager
-        manager.get_template(path).render(**kwargs)
-        ```
+
+        .. code-block:: python
+
+            manager: Manager
+            manager.get_template(path).render(**kwargs)
 
         Examples
         --------
@@ -91,16 +92,16 @@ class Manager:
     async def aiorender(
         self, *args, eloop: Optional[AbstractEventLoop] = None, **kwargs
     ) -> str:
-        """This is an asynchronous version of version for `render`.  
-        Use the `run_in_executor` of event loop.
+        """This is an asynchronous version of version for :meth:`miko.manager.Manager.render`.  
+        Use the ``run_in_executor`` of event loop.
 
         Parameters
         ----------
         *args
-            Arguments to pass to `render`.
+            Arguments to pass to :meth:`miko.manager.Manager.render`.
         eloop : AbstractEventLoop, optional
             The event loop to use.  
             If not specified, it will be obtained automatically.
         **kwargs
-            Keyword arguments to pass to `render`."""
+            Keyword arguments to pass to :meth:`miko.manager.Manager.render`"""
         return await _executor_function(self.render, eloop, *args, **kwargs)

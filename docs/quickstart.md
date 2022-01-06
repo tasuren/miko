@@ -47,11 +47,11 @@ A built-in is a variable that can be used from the beginning in a template block
 There are functions and so on.
 * `Template` class instance: `self`
 * Insert another file: `include`
-  (`miko.filters.include`)
+  (`miko.builtins.include`)
 * Truncate text: `truncate`
-  (`miko.filters.truncate`)
+  (`miko.builtins.truncate`)
 * A constant containing a two-letter cat-halet string: `CS`
-  (`miko.filters.CS`)
+  (`miko.builtins.CS`)
 * `Manager` class instance: `manager` (If you used the Manager class for rendering.)
 
 miko is still waiting for a PullRequest in the GitHub repository as there are not many yet.
@@ -86,6 +86,20 @@ In miko, you can inherit templates by using the attribute `render` of the instan
   # or self.extends("base.html", ...)
 ^^
 ```
+
+## Escape
+If you place the user name and description fields in the template, it is better to escape them to prevent XSS injection.  
+If you are going to do that escaping, you should do the following:
+```html
+<div class="description">
+  ^^ escape(user.description) ^^
+</div>
+```
+Yes, you can use the built-in `escape` function.  
+The `escape` function is a function of `html`, the Python standard library.  
+### Notes
+If you want to automate this escaping, you can use the `adjustors` argument of the constructor of the `Template` class.  
+(If you are using `Manager`, pass it to `Manager`.)
 
 ## About the name miko
 That it is not pronounced "maiko".  

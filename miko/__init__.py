@@ -5,7 +5,7 @@ from .template import (
     Template, Block, CacheManager, caches
 )
 from .manager import Manager
-from . import filters
+from . import builtins
 
 
 __version__ = "1.0.0"

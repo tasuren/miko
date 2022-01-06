@@ -1,0 +1,479 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2022, tasuren
+# This file is distributed under the same license as the miko package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: miko # miko by tasuren\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2022-01-06 12:53+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: ../../miko.rst:2
+msgid "miko package"
+msgstr ""
+
+#: ../../miko.rst:5
+msgid "Submodules"
+msgstr ""
+
+#: ../../miko.rst:8
+msgid "miko.builtins module"
+msgstr ""
+
+#: ../../docstring miko.builtins.CS:1 of
+msgid ""
+"This is just a constant with two caret signs in it. Use this when you "
+"want to use two caret signs side by side in a string defined in the "
+"Python code in the block."
+msgstr ""
+
+#: html.escape:1 of
+msgid ""
+"Replace special characters \"&\", \"<\" and \">\" to HTML-safe sequences."
+" If the optional flag quote is true (the default), the quotation mark "
+"characters, both double quote (\") and single quote (') characters are "
+"also translated."
+msgstr ""
+
+#: miko.builtins.include:1 of
+msgid "Insert other files."
+msgstr ""
+
+#: miko.builtins.include miko.builtins.truncate miko.manager.Manager
+#: miko.manager.Manager.aiorender miko.manager.Manager.get_template
+#: miko.manager.Manager.render miko.parser.extract_blocks miko.template.Block
+#: miko.template.CacheManager.get_block miko.template.Template
+#: miko.template.Template.aiorender miko.template.Template.extends
+#: miko.template.Template.from_file miko.template.Template.render of
+msgid "Parameters"
+msgstr ""
+
+#: miko.builtins.include:3 of
+msgid "The path to a file."
+msgstr ""
+
+#: miko.builtins.include:7 miko.manager.Manager.get_template:9
+#: miko.manager.Manager.render:8 miko.template.Template.extends:41
+#: miko.template.Template.render:9 of
+msgid "Notes"
+msgstr ""
+
+#: miko.builtins.include:8 of
+msgid "Use the last modified date of the file to cache it."
+msgstr ""
+
+#: miko.builtins.include:12 of
+msgid ":obj:`Template.extends`"
+msgstr ""
+
+#: miko.builtins.include:13 of
+msgid "Render and embed other files."
+msgstr ""
+
+#: miko.builtins.truncate:1 of
+msgid "Truncate text."
+msgstr ""
+
+#: miko.builtins.truncate:5 of
+msgid "Max text length."
+msgstr ""
+
+#: miko.builtins.truncate:7 of
+msgid "The characters that come at the end of the text."
+msgstr ""
+
+#: miko.builtins.truncate of
+msgid "Returns"
+msgstr ""
+
+#: miko.builtins.truncate:10 of
+msgid "**truncated text**"
+msgstr ""
+
+#: miko.builtins.truncate of
+msgid "Return type"
+msgstr ""
+
+#: miko.builtins.truncate:14 miko.manager.Manager.render:17
+#: miko.template.Template.extends:13 of
+msgid "Examples"
+msgstr ""
+
+#: ../../miko.rst:16
+msgid "miko.manager module"
+msgstr ""
+
+#: miko.manager.Manager:1 miko.template.Block:1 miko.template.CacheManager:1
+#: miko.template.Template:1 of
+msgid "Bases: :py:class:`object`"
+msgstr ""
+
+#: miko.manager.Manager:1 of
+msgid ""
+"Class for managing templates. Templates rendered using this class will "
+"automatically be passed a ``manager`` variable containing an instance of "
+"this class."
+msgstr ""
+
+#: miko.manager.Manager:4 of
+msgid "Arguments to pass to :class:`miko.template.Template`."
+msgstr ""
+
+#: miko.manager.Manager:5 of
+msgid ""
+"This is the :class:`miko.template.Template` class used to create "
+"instances of :class:`miko.template.Template`. If you extend the "
+":class:`miko.template.Template` class and want to use the extended class "
+"with ``Manager``, use the box argument."
+msgstr ""
+
+#: miko.manager.Manager:8 of
+msgid ""
+"A dictionary of names and values of attributes to be attached to a "
+":class:`miko.template.Template` class when it is instantiated. This makes"
+" it easy to extend :class:`miko.template.Template` and access its "
+"attributes from within a template via its instance."
+msgstr ""
+
+#: miko.manager.Manager:11 of
+msgid "Keyword arguments to pass to :class:`miko.template.Template`."
+msgstr ""
+
+#: miko.manager.Manager.aiorender:1 of
+msgid ""
+"This is an asynchronous version of version for "
+":meth:`miko.manager.Manager.render`. Use the ``run_in_executor`` of event"
+" loop."
+msgstr ""
+
+#: miko.manager.Manager.aiorender:4 of
+msgid "Arguments to pass to :meth:`miko.manager.Manager.render`."
+msgstr ""
+
+#: miko.manager.Manager.aiorender:5 miko.template.Template.aiorender:5 of
+msgid ""
+"The event loop to use. If not specified, it will be obtained "
+"automatically."
+msgstr ""
+
+#: miko.manager.Manager.aiorender:8 of
+msgid "Keyword arguments to pass to :meth:`miko.manager.Manager.render`"
+msgstr ""
+
+#: miko.manager.Manager.get_template:1 of
+msgid "Prepare template from file."
+msgstr ""
+
+#: miko.manager.Manager.get_template:3 miko.manager.Manager.render:3
+#: miko.template.Template.from_file:3 of
+msgid "The path to the file."
+msgstr ""
+
+#: miko.manager.Manager.get_template:5 of
+msgid ""
+"Keyword arguments to pass to :meth:`miko.template.Template.from_file`. By"
+" default, ``kwargs`` passed when you instantiate this class is used."
+msgstr ""
+
+#: miko.manager.Manager.get_template:10 of
+msgid ""
+"When instantiating :class:`miko.template.Template`, the arguments passed "
+"to :class:`miko.manager.Manager` will be used to."
+msgstr ""
+
+#: miko.manager.Manager.render:1 of
+msgid "Render the file from the template."
+msgstr ""
+
+#: miko.manager.Manager.render:5 of
+msgid "The keyword arguments to pass to :meth:`miko.template.Template.render`."
+msgstr ""
+
+#: miko.manager.Manager.render:9 of
+msgid "This method does the same thing as below."
+msgstr ""
+
+#: miko.manager.Manager.render:18 of
+msgid "Template"
+msgstr ""
+
+#: miko.manager.Manager.render:23 miko.template.Template.extends:46 of
+msgid "Backend"
+msgstr ""
+
+#: ../../miko.rst:24
+msgid "miko.parser module"
+msgstr ""
+
+#: miko.parser.extract_blocks:1 of
+msgid "Extract a block of tempylate from a string."
+msgstr ""
+
+#: miko.parser.extract_blocks:3 of
+msgid "Target text"
+msgstr ""
+
+#: miko.parser.extract_blocks of
+msgid "Yields"
+msgstr ""
+
+#: miko.parser.extract_blocks:6 of
+msgid ""
+"*tuple[int, bool, str]* -- This is a tuple of an integer for how many "
+"blocks, a boolean for whether it is a block, and the body."
+msgstr ""
+
+#: ../../miko.rst:32
+msgid "miko.template module"
+msgstr ""
+
+#: miko.template.Block:1 of
+msgid ""
+"This class represents a block. When instantiated, it compiles the string "
+"of the passed block."
+msgstr ""
+
+#: miko.template.Block:4 miko.template.CacheManager.get_block:16 of
+msgid "The string of the block."
+msgstr ""
+
+#: miko.template.Block:6 of
+msgid "A tuple of the names of the values that would be passed to the template."
+msgstr ""
+
+#: miko.template.Block:8 of
+msgid ""
+"The path to the template file where the block is located. This is to make"
+" it easier to find the error location when an error occurs in the code in"
+" the block. So, even if it doesn't make sense, it will work fine."
+msgstr ""
+
+#: miko.template.Block:12 of
+msgid ""
+"The number of how many blocks. This is also just used to make it easier "
+"to find the error location when an error occurs in the code within a "
+"block."
+msgstr ""
+
+#: miko.template.CacheManager:1 of
+msgid ""
+"This is a cache management class that takes a block from a template "
+"string, compiles the code for that block, and caches it."
+msgstr ""
+
+#: miko.template.CacheManager miko.template.Template of
+msgid "type"
+msgstr ""
+
+#: miko.template.CacheManager:7 of
+msgid "DefaultDict[str, dict[tuple[str, ...], dict[int, Block]]]"
+msgstr ""
+
+#: miko.template.CacheManager:13 of
+msgid "dict[str, Callable]"
+msgstr ""
+
+#: ../../docstring miko.template.CacheManager.block_caches:1 of
+msgid "Dictionary where the cache is stored."
+msgstr ""
+
+#: miko.template.CacheManager.get_block:1 of
+msgid ""
+"Turn the string in the passed block into a block object. It also creates "
+"a cache and returns the cache the next time the same string is passed."
+msgstr ""
+
+#: miko.template.CacheManager.get_block:4 of
+msgid ""
+"The path of the file for that template string. If you give a non-file "
+"string, put the name of the content of the string, because this path is "
+"used for naming associations in cache. So make sure it is unique for each"
+" template string you pass, or you will end up creating a cache every "
+"time."
+msgstr ""
+
+#: miko.template.CacheManager.get_block:8 of
+msgid ""
+"A tuple of the names of the values that would be passed to the template. "
+"This is also used to associate blocks in the cache, so it shouldn't be "
+"something that changes all the time. If this method is called on the same"
+" template and this args is always changing, it will create a cache "
+"everytime."
+msgstr ""
+
+#: miko.template.CacheManager.get_block:12 of
+msgid ""
+"Number of block. This is associated in the block cache and must be unique"
+" for each block. It is also used for error messages for code in the "
+"block."
+msgstr ""
+
+#: ../../docstring miko.template.DEFAULT_ADJUSTORS:1 of
+msgid "Default adjustors. (Empty)"
+msgstr ""
+
+#: ../../docstring miko.template.DEFAULT_BUILTINS:1 of
+msgid "Default builtins."
+msgstr ""
+
+#: miko.template.Template:1 of
+msgid "Template class."
+msgstr ""
+
+#: miko.template.Template:3 of
+msgid "Template text."
+msgstr ""
+
+#: miko.template.Template:5 of
+msgid ""
+"The path to the file of template text. This should be unique for each "
+"template string, because it is used as the name in association with the "
+"post-compile function cache for the blocks in the template."
+msgstr ""
+
+#: miko.template.Template:8 of
+msgid ""
+"A dictionary of names and values of variables to be passed by default "
+"when executing blocks in the template."
+msgstr ""
+
+#: miko.template.Template:10 of
+msgid ""
+"The functions in this list are called when the template is rendered. When"
+" the function is called, it is passed an instance of this class "
+"(``self``) and a dictionary containing the values passed to the template."
+" This allows you to extend the value passed in."
+msgstr ""
+
+#: miko.template.Template:19 miko.template.Template:25 of
+msgid "str"
+msgstr ""
+
+#: miko.template.Template:31 of
+msgid "dict[str, Any]"
+msgstr ""
+
+#: miko.template.Template:37 of
+msgid "list[Adjustor]"
+msgstr ""
+
+#: miko.template.Template.aiorender:1 of
+msgid ""
+"This is an asynchronous version of :meth:`miko.template.Template.render`."
+" Use the ``run_in_executor`` of event loop."
+msgstr ""
+
+#: miko.template.Template.aiorender:4 of
+msgid "Arguments to pass to :meth:`miko.template.Template.render`."
+msgstr ""
+
+#: miko.template.Template.aiorender:8 miko.template.Template.extends:10 of
+msgid "Keyword arguments to pass to :meth:`miko.template.Template.render`."
+msgstr ""
+
+#: miko.template.Template.extends:1 of
+msgid ""
+"Renders the file in the passed path with this class instanced by the "
+"options passed when instantiating this class. It is like extends in "
+"jinja. This is provided to render and embed another template within the "
+"template. It seems the method of the class needs to be instantiated, "
+"which might seem cumbersome, the block is passed an instance of this "
+"class, ``self``, when the template is rendered. So you can use this "
+"method in a template as follows: ``self.extends(\"template_path\", "
+"keyword-arguments)``"
+msgstr ""
+
+#: miko.template.Template.extends:8 of
+msgid "The path to a template."
+msgstr ""
+
+#: miko.template.Template.extends:14 of
+msgid "base.html"
+msgstr ""
+
+#: miko.template.Template.extends:30 of
+msgid "page1.html"
+msgstr ""
+
+#: miko.template.Template.extends:42 of
+msgid ""
+"If you are extending a web page, the arguments to ``extends`` may seem to"
+" be too long. In such a case, when instantiating the "
+":class:`miko.manager.Manager` class, you can put a function that executes"
+" its short ``extends`` method in the ``extends`` argument. Like bellow:"
+msgstr ""
+
+#: miko.template.Template.extends:56 of
+msgid "HTML"
+msgstr ""
+
+#: miko.template.Template.from_file:1 of
+msgid "Prepare template from file easily."
+msgstr ""
+
+#: miko.template.Template.from_file:5 of
+msgid ""
+"Arguments to be used when instantiating the "
+":class:`miko.template.Template`."
+msgstr ""
+
+#: miko.template.Template.from_file:6 of
+msgid ""
+"Keyword arguments to be used when instantiating the "
+":class:`miko.template.Template`."
+msgstr ""
+
+#: miko.template.Template.render:1 of
+msgid "Render the template."
+msgstr ""
+
+#: miko.template.Template.render:3 of
+msgid ""
+"Whether to include the data in the dictionary that can be retrieved by "
+"``globals()`` in the variables passed to the code in the block."
+msgstr ""
+
+#: miko.template.Template.render:5 of
+msgid ""
+"The name and value dictionary of the value to pass to the template. Pass "
+"the value you want to use in the code in the block."
+msgstr ""
+
+#: miko.template.Template.render:10 of
+msgid ""
+"Each time the key of ``kwargs`` changes, the code in the block is "
+"compiled. Functions created by compiling are cached. Also, if you "
+"``import`` a large library in a block, the first rendering will be "
+"slower, but after that it won't be as bad due to Python's cache."
+msgstr ""
+
+#: miko.template.Template.render:16 of
+msgid ""
+"``**kwargs`` to pass a value to the template so that the name of the "
+"value changes every time, it compiles the blocks in the template every "
+"time, which is slightly slower. (I don't think anyone would do that.) So "
+"you should keep the value name constant. Also, if the code in the block "
+"is made to be time-consuming, rendering will take time."
+msgstr ""
+
+#: ../../docstring miko.template.TypeMikoFunction:1 of
+msgid "The type of a function that wraps the code of block."
+msgstr ""
+
+#: ../../miko.rst:40
+msgid "miko.utils module"
+msgstr ""
+
+#: ../../miko.rst:48
+msgid "Module contents"
+msgstr ""
+

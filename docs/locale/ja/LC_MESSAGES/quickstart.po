@@ -1,0 +1,174 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2022, tasuren
+# This file is distributed under the same license as the miko package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: miko # miko by tasuren\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2022-01-06 12:53+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: ../../quickstart.md:1
+msgid "Quick Start"
+msgstr ""
+
+#: ../../quickstart.md:2
+msgid "Template Manager"
+msgstr ""
+
+#: ../../quickstart.md:3
+msgid ""
+"You can use the `Manager` class to prepare templates easily, and render "
+"them easily.   So, when you use it in the backend of a web service, you "
+"should define the `Manager` class first."
+msgstr ""
+
+#: ../../quickstart.md:11
+msgid "Syntax"
+msgstr ""
+
+#: ../../quickstart.md:12
+msgid ""
+"In miko, the part of a template enclosed in a two-lettered hat caret is a"
+" function and is executed in Python.   This enclosed area is called a "
+"block in miko.   The block is replaced by the value returned by the "
+"block.   In addition, the last line of the block is automatically "
+"replaced by `return` even if you don't write `return`.   If you don't "
+"know, it is faster to look at an example."
+msgstr ""
+
+#: ../../quickstart.md:17
+msgid "Example"
+msgstr ""
+
+#: ../../quickstart.md:18 ../../quickstart.md:34
+msgid "html"
+msgstr ""
+
+#: ../../quickstart.md:24 ../../quickstart.md:40
+msgid "python"
+msgstr ""
+
+#: ../../quickstart.md:28
+msgid "Result html"
+msgstr ""
+
+#: ../../quickstart.md:33
+msgid "Of course, you can also do the following:"
+msgstr ""
+
+#: ../../quickstart.md:45
+msgid "Builtins"
+msgstr ""
+
+#: ../../quickstart.md:46
+msgid ""
+"A built-in is a variable that can be used from the beginning in a "
+"template block.   There are functions and so on."
+msgstr ""
+
+#: ../../quickstart.md:48
+msgid "`Template` class instance: `self`"
+msgstr ""
+
+#: ../../quickstart.md:49
+msgid "Insert another file: `include` (`miko.builtins.include`)"
+msgstr ""
+
+#: ../../quickstart.md:51
+msgid "Truncate text: `truncate` (`miko.builtins.truncate`)"
+msgstr ""
+
+#: ../../quickstart.md:53
+msgid ""
+"A constant containing a two-letter cat-halet string: `CS` "
+"(`miko.builtins.CS`)"
+msgstr ""
+
+#: ../../quickstart.md:55
+msgid ""
+"`Manager` class instance: `manager` (If you used the Manager class for "
+"rendering.)"
+msgstr ""
+
+#: ../../quickstart.md:57
+msgid ""
+"miko is still waiting for a PullRequest in the GitHub repository as there"
+" are not many yet."
+msgstr ""
+
+#: ../../quickstart.md:59
+msgid "Inheriting Templates"
+msgstr ""
+
+#: ../../quickstart.md:60
+msgid ""
+"In miko, you can inherit templates by using the attribute `render` of the"
+" instance of the `Manager` class that is automatically passed to the "
+"block.   (Or you can use the extends attribute of an instance of the "
+"Template class.)"
+msgstr ""
+
+#: ../../quickstart.md:62
+msgid "Examples"
+msgstr ""
+
+#: ../../quickstart.md:63
+msgid "base.html"
+msgstr ""
+
+#: ../../quickstart.md:76
+msgid "page1.html"
+msgstr ""
+
+#: ../../quickstart.md:90
+msgid "Escape"
+msgstr ""
+
+#: ../../quickstart.md:91
+msgid ""
+"If you place the user name and description fields in the template, it is "
+"better to escape them to prevent XSS injection.   If you are going to do "
+"that escaping, you should do the following:"
+msgstr ""
+
+#: ../../quickstart.md:98
+msgid ""
+"Yes, you can use the built-in `escape` function.   The `escape` function "
+"is a function of `html`, the Python standard library."
+msgstr ""
+
+#: ../../quickstart.md:100
+msgid "Notes"
+msgstr ""
+
+#: ../../quickstart.md:101
+msgid ""
+"If you want to automate this escaping, you can use the `adjustors` "
+"argument of the constructor of the `Template` class.   (If you are using "
+"`Manager`, pass it to `Manager`.)"
+msgstr ""
+
+#: ../../quickstart.md:104
+msgid "About the name miko"
+msgstr ""
+
+#: ../../quickstart.md:105
+msgid ""
+"That it is not pronounced \"maiko\".   A miko (巫女 - sibyl) is a woman who"
+" serves the Japanese gods and is found in jinja (神社 - shrines).   I named"
+" it miko to make it look like another template engine choice for jinja, "
+"Python's famous template engine.   If you want to see what a shrine "
+"maiden looks like, search for `巫女`.   (If you're an anime fan, you may "
+"know this.)"
+msgstr ""
+

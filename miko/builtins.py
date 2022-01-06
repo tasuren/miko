@@ -1,13 +1,14 @@
-# miko - Filters
+# miko - Builtins
 
 from __future__ import annotations
 
+from html import escape
 from os import stat
 
 from .utils import _get_all
 
 
-__all__ = ("include", "truncate", "CS")
+__all__ = ("include", "escape", "truncate", "CS")
 
 
 _include_caches: list = [0, None]

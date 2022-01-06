@@ -4,10 +4,10 @@ miko package
 Submodules
 ----------
 
-miko.filters module
--------------------
+miko.builtins module
+--------------------
 
-.. automodule:: miko.filters
+.. automodule:: miko.builtins
    :members:
    :undoc-members:
    :show-inheritance:

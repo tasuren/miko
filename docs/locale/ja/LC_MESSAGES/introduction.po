@@ -1,0 +1,116 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2022, tasuren
+# This file is distributed under the same license as the miko package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: miko # miko by tasuren\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2022-01-06 12:53+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: ../../introduction.md:1
+msgid "Introduction"
+msgstr "はじめに"
+
+#: ../../introduction.md:2
+msgid "miko is a pythonic template engine that is little, lightweight and fast."
+msgstr "mikoは小さくて軽量で速いPythonicなテンプレートエンジンです。"
+
+#: ../../introduction.md:4
+msgid "**Features:**"
+msgstr "**特徴：**"
+
+#: ../../introduction.md:5
+msgid ""
+"Full python syntax. So there is absolutely nothing to remember in the "
+"syntax."
+msgstr "完全なPythonの構文、ほぼ構文について新しく覚える必要はありません。"
+
+#: ../../introduction.md:6
+msgid "It runs in Python."
+msgstr "テンプレート内の構文はPythonで動かします。"
+
+#: ../../introduction.md:7
+msgid "Little, lightweight and fast. (No dependency)"
+msgstr "小さくて軽量で速いです。(しかも依存性はなし)"
+
+#: ../../introduction.md:8
+msgid "Inheriting layouts through template inheritance."
+msgstr "テンプレートの継承によるレイアウトの継承"
+
+#: ../../introduction.md:9
+msgid "Easy to use!"
+msgstr "簡単に使える！"
+
+#: ../../introduction.md:11
+msgid "Installation"
+msgstr "インストール"
+
+#: ../../introduction.md:12
+msgid "You can install it using pip.   `$ pip install miko-tpl`"
+msgstr "pipを使ってインストールすることができます。  
+`$ pip install miko-tpl`"
+
+#: ../../introduction.md:15
+msgid "Examples"
+msgstr "例"
+
+#: ../../introduction.md:16
+msgid "Title"
+msgstr "タイトル"
+
+#: ../../introduction.md:20
+msgid "Members"
+msgstr "メンバー"
+
+#: ../../introduction.md:34
+msgid "Extend"
+msgstr "拡張"
+
+#: ../../introduction.md:48
+msgid "Documentation"
+msgstr "ドキュメント"
+
+#: ../../introduction.md:49
+msgid ""
+"You can view the UserGuide and API reference of miko "
+"[here](https://miko.readthedocs.io/)."
+msgstr "[ここ](https://miko.readthedocs.io/)からユーザーガイドやAPIリファレンスを見ることができます。"
+
+#: ../../introduction.md:51
+msgid "Contributing"
+msgstr "コントリビューティング"
+
+#: ../../introduction.md:52
+#, python-format
+msgid ""
+"You can contribute on the development of miko in the GitHub repository."
+"   If you send a pull request, please keep the following in mind.   The "
+"source code is written in such a way that it is 45% compliant with PEP8."
+"   I would like you to keep the overall style of the source code as "
+"unchanged as possible."
+msgstr "あなたはGitHubのリポジトリで開発に協力することができます。  
+もしPullRequestを送る際は以下のことに気を付けてください。  
+ソースコードは40%ほどPEP8に準拠しています。  
+そして全体のソースコードのスタイルを崩さないでほしいです。"
+
+#: ../../introduction.md:57
+msgid "License"
+msgstr "ライセンス"
+
+#: ../../introduction.md:58
+msgid ""
+"miko is available under the MIT license.   Detail: "
+"[LICENSE](https://github.com/tasuren/miko/blob/main/LICENSE)"
+msgstr "mikoはMITライセンスの下で使うことができます。  
+詳細：[LICENSE](https://github.com/tasuren/miko/blob/main/LICENSE)"
+

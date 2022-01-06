@@ -22,7 +22,8 @@ copyright = '2022, tasuren'
 author = 'tasuren'
 
 # The full version, including alpha/beta/rc tags
-release = '1.0.0'
+with open("../miko/__init__.py", "r") as f:
+    release = version = f.read().split('__version__ = "')[1].split('"')[0]
 
 
 # -- General configuration ---------------------------------------------------
@@ -62,3 +63,8 @@ source_suffix = {
     '.txt': 'markdown',
     '.md': 'markdown',
 }
+
+# 多言語対応
+language = 'en'
+gettext_compact = False
+locale_dirs = ['locale/']
