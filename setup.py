@@ -5,13 +5,14 @@ from os.path import exists
 
 
 NAME = "miko"
+DESCRIPTION = "Little, lightweight and fast template engine."
 
 
 if exists("README.md"):
     with open("README.md", "r") as f:
         long_description = f.read()
 else:
-    long_description = "Little, lightweight and fast template engine."
+    long_description = DESCRIPTION
 
 
 with open(f"{NAME}/__init__.py", "r") as f:
@@ -23,7 +24,7 @@ with open(f"{NAME}/__init__.py", "r") as f:
 setup(
     name=NAME,
     version=version,
-    description='Little, lightweight and fast template engine.',
+    description=DESCRIPTION,
     long_description=long_description,
     long_description_content_type="text/markdown",
     url=f'https://github.com/tasuren/{NAME}',
