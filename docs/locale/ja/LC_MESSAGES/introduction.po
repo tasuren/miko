@@ -23,7 +23,7 @@ msgstr "はじめに"
 
 #: ../../introduction.md:2
 msgid "miko is a pythonic template engine that is little, lightweight and fast."
-msgstr "mikoは小さくて軽量で速いPythonicなテンプレートエンジンです。"
+msgstr "mikoは小さくて軽量で高速なythonicなテンプレートエンジンです。"
 
 #: ../../introduction.md:4
 msgid "**Features:**"
@@ -37,7 +37,7 @@ msgstr "完全なPythonの構文、ほぼ構文について新しく覚える必
 
 #: ../../introduction.md:6
 msgid "It runs in Python."
-msgstr "テンプレート内の構文はPythonで動かします。"
+msgstr "テンプレートのレンダリングはほぼ純Pythonで動かします。"
 
 #: ../../introduction.md:7
 msgid "Little, lightweight and fast. (No dependency)"
