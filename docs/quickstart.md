@@ -50,6 +50,7 @@ There are functions and so on.
   (`miko.builtins.include`)
 * Truncate text: `truncate`
   (`miko.builtins.truncate`)
+* Escape text: `escape` (`html.escape`)
 * A constant containing a two-letter cat-halet string: `CS`
   (`miko.builtins.CS`)
 * `Manager` class instance: `manager` (If you used the Manager class for rendering.)

@@ -23,7 +23,8 @@ class Manager:
         If you extend the :class:`miko.template.Template` class and want to use the extended class with ``Manager``, use the box argument.
     extends : dict[str, Any], optional
         A dictionary of names and values of attributes to be attached to a :class:`miko.template.Template` class when it is instantiated.  
-        This makes it easy to extend :class:`miko.template.Template` and access its attributes from within a template via its instance.
+        This makes it easy to extend :class:`miko.template.Template` and access its attributes from within a template via its instance.  
+        For example, if you put an instance of a web framework class as ``{\"app\": app}``, you can access ``self.app`` and its object in the template.
     **kwargs
         Keyword arguments to pass to :class:`miko.template.Template`."""
 
@@ -48,7 +49,7 @@ class Manager:
 
         Notes
         -----
-        When instantiating :class:`miko.template.Template`, the arguments passed to :class:`miko.manager.Manager` will be used to."""
+        The class of the ``template_cls`` argument passed to :class:`miko.manager.Manager` will be used to create an instance of ``Template``."""
         template = self.template_cls.from_file(
             path, *(args or self.args), **(kwargs or self.kwargs)
         )

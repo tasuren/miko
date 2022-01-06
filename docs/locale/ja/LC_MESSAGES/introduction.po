@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: miko # miko by tasuren\n"
+"Project-Id-Version: miko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-01-06 12:53+0900\n"
+"POT-Creation-Date: 2022-01-06 16:38+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -57,8 +57,7 @@ msgstr "インストール"
 
 #: ../../introduction.md:12
 msgid "You can install it using pip.   `$ pip install miko-tpl`"
-msgstr "pipを使ってインストールすることができます。  
-`$ pip install miko-tpl`"
+msgstr "pipを使ってインストールすることができます"
 
 #: ../../introduction.md:15
 msgid "Examples"
@@ -77,40 +76,38 @@ msgid "Extend"
 msgstr "拡張"
 
 #: ../../introduction.md:48
-msgid "Documentation"
-msgstr "ドキュメント"
-
-#: ../../introduction.md:49
-msgid ""
-"You can view the UserGuide and API reference of miko "
-"[here](https://miko.readthedocs.io/)."
-msgstr "[ここ](https://miko.readthedocs.io/)からユーザーガイドやAPIリファレンスを見ることができます。"
-
-#: ../../introduction.md:51
 msgid "Contributing"
 msgstr "コントリビューティング"
 
-#: ../../introduction.md:52
-#, python-format
+#: ../../introduction.md:49
+#, fuzzy, python-format
 msgid ""
 "You can contribute on the development of miko in the GitHub repository."
 "   If you send a pull request, please keep the following in mind.   The "
 "source code is written in such a way that it is 45% compliant with PEP8."
 "   I would like you to keep the overall style of the source code as "
-"unchanged as possible."
-msgstr "あなたはGitHubのリポジトリで開発に協力することができます。  
-もしPullRequestを送る際は以下のことに気を付けてください。  
-ソースコードは40%ほどPEP8に準拠しています。  
-そして全体のソースコードのスタイルを崩さないでほしいです。"
+"unchanged as possible.   GitHub: "
+"[https://github.com/tasuren/miko](https://github.com/tasuren/miko)"
+msgstr "あなたはGitHubのリポジトリで開発に協力することができます。  "
+"PullRequest等を出す際は全体のソースコードのスタイルを崩さないように気を付けてください。"
 
-#: ../../introduction.md:57
+#: ../../introduction.md:55
 msgid "License"
 msgstr "ライセンス"
 
-#: ../../introduction.md:58
+#: ../../introduction.md:56
 msgid ""
 "miko is available under the MIT license.   Detail: "
 "[LICENSE](https://github.com/tasuren/miko/blob/main/LICENSE)"
-msgstr "mikoはMITライセンスの下で使うことができます。  
-詳細：[LICENSE](https://github.com/tasuren/miko/blob/main/LICENSE)"
+msgstr "mikoはMITライセンスの下で使うことができます。  "
+"詳細は[こちら](https://github.com/tasuren/miko/blob/main/LICENSE)から見れます。"
+
+#~ msgid "Documentation"
+#~ msgstr "ドキュメント"
+
+#~ msgid ""
+#~ "You can view the UserGuide and API"
+#~ " reference of miko "
+#~ "[here](https://urllib3.readthedocs.io/)."
+#~ msgstr ""
 

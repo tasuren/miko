@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: miko # miko by tasuren\n"
+"Project-Id-Version:  miko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-01-06 12:53+0900\n"
+"POT-Creation-Date: 2022-01-06 19:27+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,34 +19,19 @@ msgstr ""
 
 #: ../../miko.rst:2
 msgid "miko package"
-msgstr ""
+msgstr "miko パッケージ"
 
 #: ../../miko.rst:5
 msgid "Submodules"
-msgstr ""
+msgstr "サブモジュール"
 
 #: ../../miko.rst:8
 msgid "miko.builtins module"
-msgstr ""
-
-#: ../../docstring miko.builtins.CS:1 of
-msgid ""
-"This is just a constant with two caret signs in it. Use this when you "
-"want to use two caret signs side by side in a string defined in the "
-"Python code in the block."
-msgstr ""
-
-#: html.escape:1 of
-msgid ""
-"Replace special characters \"&\", \"<\" and \">\" to HTML-safe sequences."
-" If the optional flag quote is true (the default), the quotation mark "
-"characters, both double quote (\") and single quote (') characters are "
-"also translated."
-msgstr ""
+msgstr "miko.builtins モジュール"
 
 #: miko.builtins.include:1 of
 msgid "Insert other files."
-msgstr ""
+msgstr "他のファイルを挿入します。"
 
 #: miko.builtins.include miko.builtins.truncate miko.manager.Manager
 #: miko.manager.Manager.aiorender miko.manager.Manager.get_template
@@ -55,21 +40,21 @@ msgstr ""
 #: miko.template.Template.aiorender miko.template.Template.extends
 #: miko.template.Template.from_file miko.template.Template.render of
 msgid "Parameters"
-msgstr ""
+msgstr "パラメータ"
 
 #: miko.builtins.include:3 of
 msgid "The path to a file."
-msgstr ""
+msgstr "ファイルへのパスです。"
 
 #: miko.builtins.include:7 miko.manager.Manager.get_template:9
 #: miko.manager.Manager.render:8 miko.template.Template.extends:41
 #: miko.template.Template.render:9 of
 msgid "Notes"
-msgstr ""
+msgstr "備考"
 
 #: miko.builtins.include:8 of
 msgid "Use the last modified date of the file to cache it."
-msgstr ""
+msgstr "ファイルの最終更新日を利用してキャッシュを取ります。"
 
 #: miko.builtins.include:12 of
 msgid ":obj:`Template.extends`"
@@ -77,56 +62,74 @@ msgstr ""
 
 #: miko.builtins.include:13 of
 msgid "Render and embed other files."
+msgstr "他のファイルをレンダリングして埋め込みます。"
+
+#: html.escape:1 of
+msgid ""
+"Replace special characters \"&\", \"<\" and \">\" to HTML-safe sequences."
+" If the optional flag quote is true (the default), the quotation mark "
+"characters, both double quote (\") and single quote (') characters are "
+"also translated."
 msgstr ""
+"特殊文字\"&\", \"<\", "
+"\">\"をHTMLセーフなシーケンスに置き換えます。オプションフラグのquoteがtrueの場合（デフォルト）、ダブルクォート（\"）とシングルクォート（'）の両方もエスケープされます。これはPythonの標準のライブラリである"
+" ``html`` にある関数です。"
 
 #: miko.builtins.truncate:1 of
 msgid "Truncate text."
-msgstr ""
+msgstr "文字列を特定の位置で切り捨てます。"
 
 #: miko.builtins.truncate:5 of
 msgid "Max text length."
-msgstr ""
+msgstr "切り捨てる文字数です。"
 
 #: miko.builtins.truncate:7 of
 msgid "The characters that come at the end of the text."
-msgstr ""
+msgstr "切り捨て後の文字列の最後に配置される文字列です。"
 
 #: miko.builtins.truncate of
 msgid "Returns"
-msgstr ""
+msgstr "戻り値"
 
 #: miko.builtins.truncate:10 of
 msgid "**truncated text**"
-msgstr ""
+msgstr "切り捨て後の文字列"
 
 #: miko.builtins.truncate of
 msgid "Return type"
-msgstr ""
+msgstr "返り値の型"
 
 #: miko.builtins.truncate:14 miko.manager.Manager.render:17
 #: miko.template.Template.extends:13 of
 msgid "Examples"
-msgstr ""
+msgstr "例"
+
+#: ../../docstring miko.builtins.CS:1 of
+msgid ""
+"This is just a constant with two caret signs in it. Use this when you "
+"want to use two caret signs side by side in a string defined in the "
+"Python code in the block."
+msgstr "ただのハットキャレット文字の二文字の文字列が入った定数です。テンプレート内のブロック内でハットキャレット文字の二文字分を使いたい場合はこの定数を使用しましょう。"
 
 #: ../../miko.rst:16
 msgid "miko.manager module"
-msgstr ""
+msgstr "miko.manager モジュール"
 
 #: miko.manager.Manager:1 miko.template.Block:1 miko.template.CacheManager:1
 #: miko.template.Template:1 of
 msgid "Bases: :py:class:`object`"
-msgstr ""
+msgstr "ベース： :py:class:`object`"
 
 #: miko.manager.Manager:1 of
 msgid ""
 "Class for managing templates. Templates rendered using this class will "
 "automatically be passed a ``manager`` variable containing an instance of "
 "this class."
-msgstr ""
+msgstr "テンプレートを管理するためのクラスです。"
 
 #: miko.manager.Manager:4 of
 msgid "Arguments to pass to :class:`miko.template.Template`."
-msgstr ""
+msgstr "レンダリング時に :class:`miko.template.Template` に渡される引数です。"
 
 #: miko.manager.Manager:5 of
 msgid ""
@@ -135,18 +138,73 @@ msgid ""
 ":class:`miko.template.Template` class and want to use the extended class "
 "with ``Manager``, use the box argument."
 msgstr ""
+"レンダリング時に使用する :class:`miko.template.Template` クラスです。この引数に渡すクラスは "
+":class:`miko.template.Template` を継承している必要があります。もし "
+":class:`miko.template.Template` "
+"クラスを拡張してそれを全てのテンプレートで使いたいのならこの引数にそのクラスを渡しましょう。"
 
 #: miko.manager.Manager:8 of
+#, fuzzy
 msgid ""
 "A dictionary of names and values of attributes to be attached to a "
 ":class:`miko.template.Template` class when it is instantiated. This makes"
 " it easy to extend :class:`miko.template.Template` and access its "
-"attributes from within a template via its instance."
+"attributes from within a template via its instance. For example, if you "
+"put an instance of a web framework class as ``{\"app\": app}``, you can "
+"access ``self.app`` and its object in the template."
 msgstr ""
+":class:`miko.template.Template` "
+"のインスタンスに自動で設定する属性の名前と値の辞書です。これを使えば自動で特定の値を "
+":class:`miko.template.Template` クラスのインスタンスに設定してテンプレート内からアクセスできます。例： "
+"``{\"app\": app}``, ``^^ self.app ^^``"
 
-#: miko.manager.Manager:11 of
+#: miko.manager.Manager:12 of
 msgid "Keyword arguments to pass to :class:`miko.template.Template`."
+msgstr ":class:`miko.template.Template` に渡されるキーワード引数です。"
+
+#: miko.manager.Manager.get_template:1 of
+msgid "Prepare template from file."
+msgstr "ファイルからテンプレートを用意します。"
+
+#: miko.manager.Manager.get_template:3 miko.manager.Manager.render:3
+#: miko.template.Template.from_file:3 of
+msgid "The path to the file."
+msgstr "ファイルへのパスです。"
+
+#: miko.manager.Manager.get_template:5 of
+msgid ""
+"Keyword arguments to pass to :meth:`miko.template.Template.from_file`. By"
+" default, ``kwargs`` passed when you instantiate this class is used."
+msgstr ":meth:`miko.template.Template.from_file` に渡すキーワード引数です。"
+
+#: miko.manager.Manager.get_template:10 of
+msgid ""
+"The class of the ``template_cls`` argument passed to "
+":class:`miko.manager.Manager` will be used to create an instance of "
+"``Template``."
 msgstr ""
+":class:`miko.manager.Manager` クラスのインスタンス化時に引数の ``template_cls`` "
+"に渡したクラスを使ってテンプレートのクラスを作ります。"
+
+#: miko.manager.Manager.render:1 of
+msgid "Render the file from the template."
+msgstr "テンプレートからファイルをレンダリングします。"
+
+#: miko.manager.Manager.render:5 of
+msgid "The keyword arguments to pass to :meth:`miko.template.Template.render`."
+msgstr ":meth:`miko.template.Template.render` に渡すキーワード引数です。"
+
+#: miko.manager.Manager.render:9 of
+msgid "This method does the same thing as below."
+msgstr "このメソッド以下と同じことをします。"
+
+#: miko.manager.Manager.render:18 of
+msgid "Template"
+msgstr "テンプレート"
+
+#: miko.manager.Manager.render:23 miko.template.Template.extends:47 of
+msgid "Backend"
+msgstr "バックエンド"
 
 #: miko.manager.Manager.aiorender:1 of
 msgid ""
@@ -154,73 +212,34 @@ msgid ""
 ":meth:`miko.manager.Manager.render`. Use the ``run_in_executor`` of event"
 " loop."
 msgstr ""
+"これは :meth:`miko.template.Template.render` の非同期バージョンです。イベントループの "
+"``run_in_executor`` を使います。"
 
 #: miko.manager.Manager.aiorender:4 of
 msgid "Arguments to pass to :meth:`miko.manager.Manager.render`."
-msgstr ""
+msgstr ":meth:`miko.manager.Manager.render` に渡す引数です。"
 
 #: miko.manager.Manager.aiorender:5 miko.template.Template.aiorender:5 of
 msgid ""
 "The event loop to use. If not specified, it will be obtained "
 "automatically."
-msgstr ""
+msgstr "使用するイベントループです。"
 
 #: miko.manager.Manager.aiorender:8 of
 msgid "Keyword arguments to pass to :meth:`miko.manager.Manager.render`"
-msgstr ""
-
-#: miko.manager.Manager.get_template:1 of
-msgid "Prepare template from file."
-msgstr ""
-
-#: miko.manager.Manager.get_template:3 miko.manager.Manager.render:3
-#: miko.template.Template.from_file:3 of
-msgid "The path to the file."
-msgstr ""
-
-#: miko.manager.Manager.get_template:5 of
-msgid ""
-"Keyword arguments to pass to :meth:`miko.template.Template.from_file`. By"
-" default, ``kwargs`` passed when you instantiate this class is used."
-msgstr ""
-
-#: miko.manager.Manager.get_template:10 of
-msgid ""
-"When instantiating :class:`miko.template.Template`, the arguments passed "
-"to :class:`miko.manager.Manager` will be used to."
-msgstr ""
-
-#: miko.manager.Manager.render:1 of
-msgid "Render the file from the template."
-msgstr ""
-
-#: miko.manager.Manager.render:5 of
-msgid "The keyword arguments to pass to :meth:`miko.template.Template.render`."
-msgstr ""
-
-#: miko.manager.Manager.render:9 of
-msgid "This method does the same thing as below."
-msgstr ""
-
-#: miko.manager.Manager.render:18 of
-msgid "Template"
-msgstr ""
-
-#: miko.manager.Manager.render:23 miko.template.Template.extends:46 of
-msgid "Backend"
-msgstr ""
+msgstr ":meth:`miko.manager.Manager.render` に渡すキーワード引数です。"
 
 #: ../../miko.rst:24
 msgid "miko.parser module"
-msgstr ""
+msgstr "miko.parser モジュール"
 
 #: miko.parser.extract_blocks:1 of
-msgid "Extract a block of tempylate from a string."
-msgstr ""
+msgid "Extract a block of template from a string."
+msgstr "文字列からテンプレート内のブロックを取り出します。"
 
 #: miko.parser.extract_blocks:3 of
 msgid "Target text"
-msgstr ""
+msgstr "対象の文字列です。"
 
 #: miko.parser.extract_blocks of
 msgid "Yields"
@@ -230,49 +249,61 @@ msgstr ""
 msgid ""
 "*tuple[int, bool, str]* -- This is a tuple of an integer for how many "
 "blocks, a boolean for whether it is a block, and the body."
-msgstr ""
+msgstr "*tuple[int, bool, str]* -- 何番目のブロックかの整数とブロックかどうかの真偽地と取り出した文字列のタプルです。"
 
 #: ../../miko.rst:32
 msgid "miko.template module"
-msgstr ""
+msgstr "miko.template モジュール"
+
+#: ../../docstring miko.template.TypeMikoFunction:1 of
+msgid "The type of a function that wraps the code of block."
+msgstr "ブロックをラップする関数の型です。"
+
+#: ../../docstring miko.template.DEFAULT_BUILTINS:1 of
+msgid "Default builtins."
+msgstr "デフォルトのビルトインです。"
+
+#: ../../docstring miko.template.DEFAULT_ADJUSTORS:1 of
+msgid "Default adjustors. (Empty)"
+msgstr "デフォルトのadjustorsです。 (カラカラカラのカラ, これは中身は空です。)"
 
 #: miko.template.Block:1 of
 msgid ""
 "This class represents a block. When instantiated, it compiles the string "
 "of the passed block."
-msgstr ""
+msgstr "このクラスはブロックのクラスです。インスタンス化時に渡されたブロックの中身のコードを関数に入れてコンパイルします。"
 
 #: miko.template.Block:4 miko.template.CacheManager.get_block:16 of
 msgid "The string of the block."
-msgstr ""
+msgstr "ブロックの文字列です。"
 
 #: miko.template.Block:6 of
 msgid "A tuple of the names of the values that would be passed to the template."
-msgstr ""
+msgstr "テンプレートに渡されるであろう変数の名前のタプルです。"
 
 #: miko.template.Block:8 of
 msgid ""
 "The path to the template file where the block is located. This is to make"
 " it easier to find the error location when an error occurs in the code in"
 " the block. So, even if it doesn't make sense, it will work fine."
-msgstr ""
+msgstr "ブロックがあるテンプレートファイルのパスです。これはエラーをわかりやすくするためのもので何にしても別に問題なく作動します。"
 
 #: miko.template.Block:12 of
 msgid ""
 "The number of how many blocks. This is also just used to make it easier "
 "to find the error location when an error occurs in the code within a "
 "block."
-msgstr ""
+msgstr "何番目のブロックかの数です。これもエラーをわかりやすくするためのもので何にしても別に問題なく作動します。"
 
 #: miko.template.CacheManager:1 of
 msgid ""
 "This is a cache management class that takes a block from a template "
 "string, compiles the code for that block, and caches it."
-msgstr ""
+msgstr "これはテンプレートのブロックの関数のキャッシュを管理するためのクラスです。内部で使われます。"
 
 #: miko.template.CacheManager miko.template.Template of
 msgid "type"
-msgstr ""
+msgstr "型"
 
 #: miko.template.CacheManager:7 of
 msgid "DefaultDict[str, dict[tuple[str, ...], dict[int, Block]]]"
@@ -284,13 +315,13 @@ msgstr ""
 
 #: ../../docstring miko.template.CacheManager.block_caches:1 of
 msgid "Dictionary where the cache is stored."
-msgstr ""
+msgstr "キャッシュが入れられる辞書です。"
 
 #: miko.template.CacheManager.get_block:1 of
 msgid ""
 "Turn the string in the passed block into a block object. It also creates "
 "a cache and returns the cache the next time the same string is passed."
-msgstr ""
+msgstr "渡された文字列を`Block`クラスのオブジェクトにします。また、作ったオブジェクトのキャッシュを取り、次呼ばれる際にすぐオブジェクトを返せるようにします。"
 
 #: miko.template.CacheManager.get_block:4 of
 msgid ""
@@ -299,7 +330,7 @@ msgid ""
 "used for naming associations in cache. So make sure it is unique for each"
 " template string you pass, or you will end up creating a cache every "
 "time."
-msgstr ""
+msgstr "テンプレートのファイルへのパスです。もしファイルではなく文字列だけを渡している場合はパスではなくその文字列の内容を示す名前にしてください。というのもこれはキャッシュの名前に使うからです。もしこれを文字列毎に一意ではないものにした場合は毎回キャッシュを作ってしまいます。"
 
 #: miko.template.CacheManager.get_block:8 of
 msgid ""
@@ -308,43 +339,35 @@ msgid ""
 "something that changes all the time. If this method is called on the same"
 " template and this args is always changing, it will create a cache "
 "everytime."
-msgstr ""
+msgstr "テンプレートに渡されるであろう変数の名前のタプルです。これもキャッシュの名前に使われるものです。ですのでテンプレート毎に一意にした方が良いです。もし一意にしなかった場合は毎回キャッシュを作ることになり、そんな差は感じないと思いますが速度低下につながり非効率的です。"
 
 #: miko.template.CacheManager.get_block:12 of
 msgid ""
 "Number of block. This is associated in the block cache and must be unique"
 " for each block. It is also used for error messages for code in the "
 "block."
-msgstr ""
-
-#: ../../docstring miko.template.DEFAULT_ADJUSTORS:1 of
-msgid "Default adjustors. (Empty)"
-msgstr ""
-
-#: ../../docstring miko.template.DEFAULT_BUILTINS:1 of
-msgid "Default builtins."
-msgstr ""
+msgstr "何番目のブロックかの数です。これはブロックのキャッシュの名前に使います。なのでブロック毎に一意にする必要があります。また、エラーメッセージにも使用します。"
 
 #: miko.template.Template:1 of
 msgid "Template class."
-msgstr ""
+msgstr "テンプレートクラス"
 
 #: miko.template.Template:3 of
 msgid "Template text."
-msgstr ""
+msgstr "テンプレートの文字列"
 
 #: miko.template.Template:5 of
 msgid ""
 "The path to the file of template text. This should be unique for each "
 "template string, because it is used as the name in association with the "
 "post-compile function cache for the blocks in the template."
-msgstr ""
+msgstr "テンプレートのファイルへのパスです。これはキャッシュの名前に使うのでテンプレート毎に一意である必要がありますもしテンプレートの文字列がファイルからではない場合はその文字列の内容を示す名前にしましょう。(ハッシュでも良いです。)"
 
 #: miko.template.Template:8 of
 msgid ""
 "A dictionary of names and values of variables to be passed by default "
 "when executing blocks in the template."
-msgstr ""
+msgstr "テンプレートに渡す変数の名前と値の辞書です。"
 
 #: miko.template.Template:10 of
 msgid ""
@@ -352,7 +375,7 @@ msgid ""
 " the function is called, it is passed an instance of this class "
 "(``self``) and a dictionary containing the values passed to the template."
 " This allows you to extend the value passed in."
-msgstr ""
+msgstr "テンプレートのレンダリング時に呼ばれる関数のリストです。いわゆるデコレータのようなことができます。これが呼び出される際にはそのレンダリングするテンプレートのクラスのインスタンス(``self``)とそのテンプレートに渡された変数の名前と値の辞書が渡されます。これを使うことでテンプレートに渡される変数を調整したり削除したりすることができます。"
 
 #: miko.template.Template:19 miko.template.Template:25 of
 msgid "str"
@@ -366,21 +389,79 @@ msgstr ""
 msgid "list[Adjustor]"
 msgstr ""
 
+#: miko.template.Template.from_file:1 of
+msgid "Prepare template from file easily."
+msgstr "ファイルからテンプレートを用意します。"
+
+#: miko.template.Template.from_file:5 of
+msgid ""
+"Arguments to be used when instantiating the "
+":class:`miko.template.Template`."
+msgstr ":class:`miko.template.Template` クラスのインスタンス化時に使う引数です。"
+
+#: miko.template.Template.from_file:6 of
+msgid ""
+"Keyword arguments to be used when instantiating the "
+":class:`miko.template.Template`."
+msgstr ":class:`miko.template.Template` クラスのインスタンス化時に使うキーワード引数です。"
+
+#: miko.template.Template.render:1 of
+msgid "Render the template."
+msgstr "テンプレートをレンダリングします。"
+
+#: miko.template.Template.render:3 of
+msgid ""
+"Whether to include the data in the dictionary that can be retrieved by "
+"``globals()`` in the variables passed to the code in the block."
+msgstr "テンプレートに渡すデータに ``globals()`` によって取得できるデータを含めるかどうかです。"
+
+#: miko.template.Template.render:5 of
+msgid ""
+"The name and value dictionary of the value to pass to the template. Pass "
+"the value you want to use in the code in the block."
+msgstr "テンプレートに渡される変数の名前と値の辞書です。"
+
+#: miko.template.Template.render:10 of
+msgid ""
+"Each time the key of ``kwargs`` changes, the code in the block is "
+"compiled. Functions created by compiling are cached. Also, if you "
+"``import`` a large library in a block, the first rendering will be "
+"slower, but after that it won't be as bad due to Python's cache."
+msgstr ""
+"``kwargs`` "
+"の引数が変化する毎にブロック内のコードはコンパイルされます。そして作られた関数はキャッシュとして保存されます。それともし巨大なライブラリをテンプレート内で"
+" ``import`` "
+"した場合一番最初はレンダリングの処理に時間がかかります。ですが、それ以降はPythonがするキャッシュによって処理には時間がかからなくなります。"
+
+#: miko.template.Template.render:16 of
+msgid ""
+"``**kwargs`` to pass a value to the template so that the name of the "
+"value changes every time, it compiles the blocks in the template every "
+"time, which is slightly slower. (I don't think anyone would do that.) So "
+"you should keep the value name constant. Also, if the code in the block "
+"is made to be time-consuming, rendering will take time."
+msgstr ""
+"毎回 ``kwargs`` "
+"の引数のキーが変化した場合毎回ブロック内のコードがコンパイルされることになります。そして毎回キャッシュを作成することになります。(これをする人はいないと思いますが。)これはあまり差は感じないと思いますが速度低下につながります。それと、もしブロック内のコードを処理に時間がかかるものにした場合は同然レンダリングに時間がかかってしまいます。もし非同期ではないウェブフレームワークで使う場合は気を付けてください。"
+
 #: miko.template.Template.aiorender:1 of
 msgid ""
 "This is an asynchronous version of :meth:`miko.template.Template.render`."
 " Use the ``run_in_executor`` of event loop."
 msgstr ""
+"これは :meth:`miko.template.Template.render` の非同期バージョンです。これはイベントループの "
+"``run_in_executor`` を使用します。"
 
 #: miko.template.Template.aiorender:4 of
 msgid "Arguments to pass to :meth:`miko.template.Template.render`."
-msgstr ""
+msgstr ":meth:`miko.template.Template.render` に渡す引数です。"
 
 #: miko.template.Template.aiorender:8 miko.template.Template.extends:10 of
 msgid "Keyword arguments to pass to :meth:`miko.template.Template.render`."
-msgstr ""
+msgstr ":meth:`miko.template.Template.render` に渡すキーワード引数です。"
 
 #: miko.template.Template.extends:1 of
+#, fuzzy
 msgid ""
 "Renders the file in the passed path with this class instanced by the "
 "options passed when instantiating this class. It is like extends in "
@@ -388,13 +469,17 @@ msgid ""
 "template. It seems the method of the class needs to be instantiated, "
 "which might seem cumbersome, the block is passed an instance of this "
 "class, ``self``, when the template is rendered. So you can use this "
-"method in a template as follows: ``self.extends(\"template_path\", "
-"keyword-arguments)``"
+"method in a template as follows: ``^^ self.extends(\"template_path\", "
+"keyword-arguments) ^^``"
 msgstr ""
+"このクラスのインスタンス化時に渡したキーワード引数を利用して新しいテンプレートを用意してレンダリングを行います。これはテンプレート内で別のテンプレートをレンダリングする際に使うものです。テンプレート内には自動で"
+" :meth:`miko.template.Template` クラスのインスタンスである ``self`` "
+"変数が渡されるので次のようにそれを使えば良いです。``^^ self.extends(\"template.html\", Keyword-"
+"Arguments) ^^``"
 
 #: miko.template.Template.extends:8 of
 msgid "The path to a template."
-msgstr ""
+msgstr "テンプレートへのパス"
 
 #: miko.template.Template.extends:14 of
 msgid "base.html"
@@ -406,74 +491,46 @@ msgstr ""
 
 #: miko.template.Template.extends:42 of
 msgid ""
-"If you are extending a web page, the arguments to ``extends`` may seem to"
-" be too long. In such a case, when instantiating the "
-":class:`miko.manager.Manager` class, you can put a function that executes"
-" its short ``extends`` method in the ``extends`` argument. Like bellow:"
+"Maybe the arguments of ``extends`` become too long and troublesome when "
+"you extend the web page. In such a case, you can create a function that "
+"calls this function internally and put it in the argument ``extends`` of "
+"the :class:`miko.manager.Manager`. This way it will be like an alias and "
+"more efficient. For example, you can do something like the following."
 msgstr ""
+"もしかしたらウェブページを拡張していく際に ``extends`` "
+"の引数が長くなりすぎて面倒になるかもしれません。そういう時は :class:`miko.manager.Manager` "
+"クラスの引数 ``extends`` "
+"にこの関数を内部で呼び出す関数を作ってその関数を入れましょう。そうすればエイリアスのようになり効率的になります。例えば以下のような感じにできます。"
 
-#: miko.template.Template.extends:56 of
+#: miko.template.Template.extends:57 of
 msgid "HTML"
-msgstr ""
-
-#: miko.template.Template.from_file:1 of
-msgid "Prepare template from file easily."
-msgstr ""
-
-#: miko.template.Template.from_file:5 of
-msgid ""
-"Arguments to be used when instantiating the "
-":class:`miko.template.Template`."
-msgstr ""
-
-#: miko.template.Template.from_file:6 of
-msgid ""
-"Keyword arguments to be used when instantiating the "
-":class:`miko.template.Template`."
-msgstr ""
-
-#: miko.template.Template.render:1 of
-msgid "Render the template."
-msgstr ""
-
-#: miko.template.Template.render:3 of
-msgid ""
-"Whether to include the data in the dictionary that can be retrieved by "
-"``globals()`` in the variables passed to the code in the block."
-msgstr ""
-
-#: miko.template.Template.render:5 of
-msgid ""
-"The name and value dictionary of the value to pass to the template. Pass "
-"the value you want to use in the code in the block."
-msgstr ""
-
-#: miko.template.Template.render:10 of
-msgid ""
-"Each time the key of ``kwargs`` changes, the code in the block is "
-"compiled. Functions created by compiling are cached. Also, if you "
-"``import`` a large library in a block, the first rendering will be "
-"slower, but after that it won't be as bad due to Python's cache."
-msgstr ""
-
-#: miko.template.Template.render:16 of
-msgid ""
-"``**kwargs`` to pass a value to the template so that the name of the "
-"value changes every time, it compiles the blocks in the template every "
-"time, which is slightly slower. (I don't think anyone would do that.) So "
-"you should keep the value name constant. Also, if the code in the block "
-"is made to be time-consuming, rendering will take time."
-msgstr ""
-
-#: ../../docstring miko.template.TypeMikoFunction:1 of
-msgid "The type of a function that wraps the code of block."
 msgstr ""
 
 #: ../../miko.rst:40
 msgid "miko.utils module"
-msgstr ""
+msgstr "miko.utils module"
 
 #: ../../miko.rst:48
 msgid "Module contents"
-msgstr ""
+msgstr "モジュールの内容"
+
+#~ msgid ""
+#~ "When instantiating :class:`miko.template.Template`, "
+#~ "the arguments passed to "
+#~ ":class:`miko.manager.Manager` will be used to."
+#~ msgstr ""
+
+#~ msgid "Extract a block of tempylate from a string."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "If you are extending a web page,"
+#~ " the arguments to ``extends`` may "
+#~ "seem to be too long. In such "
+#~ "a case, when instantiating the "
+#~ ":class:`miko.manager.Manager` class, you can "
+#~ "put a function that executes its "
+#~ "short ``extends`` method in the "
+#~ "``extends`` argument. Like bellow:"
+#~ msgstr ""
 

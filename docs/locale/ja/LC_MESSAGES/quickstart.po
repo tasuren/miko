@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: miko # miko by tasuren\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-01-06 12:53+0900\n"
+"POT-Creation-Date: 2022-01-06 18:00+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,11 +19,11 @@ msgstr ""
 
 #: ../../quickstart.md:1
 msgid "Quick Start"
-msgstr ""
+msgstr "クイックスタート"
 
 #: ../../quickstart.md:2
 msgid "Template Manager"
-msgstr ""
+msgstr "テンプレートマネージャー"
 
 #: ../../quickstart.md:3
 msgid ""
@@ -31,10 +31,12 @@ msgid ""
 "them easily.   So, when you use it in the backend of a web service, you "
 "should define the `Manager` class first."
 msgstr ""
+"あなたは`Manager`クラスを使うことでテンプレートを色々と便利にレンダリングしたりすることができます。  "
+"そのためウェブサービス等を開発する際はまず最初に`Manager`クラスのインスタンスを作成しましょう。"
 
 #: ../../quickstart.md:11
 msgid "Syntax"
-msgstr ""
+msgstr "構文"
 
 #: ../../quickstart.md:12
 msgid ""
@@ -45,10 +47,13 @@ msgid ""
 "replaced by `return` even if you don't write `return`.   If you don't "
 "know, it is faster to look at an example."
 msgstr ""
+"mikoでは二文字のハットキャレット(`^^`)で囲まれた部分をPythonの関数にしてその関数を実行します。  "
+"そしてそのブロックが返した値にブロックの部分は置き換えられます。  "
+"ちなみにブロック内のコードで`if`などを挟んでいない状態の最後の行には`return`を置かなくても自動で`return`が配置されます。よくわからないかもしれません。そしたら例をみてみましょう！"
 
 #: ../../quickstart.md:17
 msgid "Example"
-msgstr ""
+msgstr "例"
 
 #: ../../quickstart.md:18 ../../quickstart.md:34
 msgid "html"
@@ -60,109 +65,122 @@ msgstr ""
 
 #: ../../quickstart.md:28
 msgid "Result html"
-msgstr ""
+msgstr "htmlのレンダリング結果"
 
 #: ../../quickstart.md:33
 msgid "Of course, you can also do the following:"
-msgstr ""
+msgstr "もちろん、あなたは以下のようなこともできますよ！"
 
 #: ../../quickstart.md:45
 msgid "Builtins"
-msgstr ""
+msgstr "ビルトイン"
 
 #: ../../quickstart.md:46
 msgid ""
 "A built-in is a variable that can be used from the beginning in a "
 "template block.   There are functions and so on."
-msgstr ""
+msgstr "ビルトインは最初からテンプレートのブロック内で使える変数です。関数もあります。"
 
 #: ../../quickstart.md:48
 msgid "`Template` class instance: `self`"
-msgstr ""
+msgstr "`Template`クラスのインスタンス：`self`"
 
 #: ../../quickstart.md:49
 msgid "Insert another file: `include` (`miko.builtins.include`)"
-msgstr ""
+msgstr "他のファイルの挿入：`include` (`miko.builtins.include`)"
 
 #: ../../quickstart.md:51
 msgid "Truncate text: `truncate` (`miko.builtins.truncate`)"
-msgstr ""
+msgstr "文字列の切り捨て：`truncate` (`miko.builtins.truncate`)"
 
 #: ../../quickstart.md:53
+msgid "Escape text: `escape` (`html.escape`)"
+msgstr "文字列をエスケープ：`escape` (`html.escape`)"
+
+#: ../../quickstart.md:54
 msgid ""
 "A constant containing a two-letter cat-halet string: `CS` "
 "(`miko.builtins.CS`)"
-msgstr ""
+msgstr "二文字のハットキャレットが入った定数：`CS`(`miko.builtins.CS`)"
 
-#: ../../quickstart.md:55
+#: ../../quickstart.md:56
 msgid ""
 "`Manager` class instance: `manager` (If you used the Manager class for "
 "rendering.)"
-msgstr ""
+msgstr "`Manager`クラスのインスタンス：`manager` (もしレンダリングに`Manager`クラスを使っているなら)"
 
-#: ../../quickstart.md:57
+#: ../../quickstart.md:58
 msgid ""
 "miko is still waiting for a PullRequest in the GitHub repository as there"
 " are not many yet."
-msgstr ""
-
-#: ../../quickstart.md:59
-msgid "Inheriting Templates"
-msgstr ""
+msgstr "まだビルトインは少ないです...  "
+"mikoはPullRequestをお待ちしております！"
 
 #: ../../quickstart.md:60
+msgid "Inheriting Templates"
+msgstr "テンプレートの継承"
+
+#: ../../quickstart.md:61
 msgid ""
 "In miko, you can inherit templates by using the attribute `render` of the"
 " instance of the `Manager` class that is automatically passed to the "
 "block.   (Or you can use the extends attribute of an instance of the "
 "Template class.)"
 msgstr ""
-
-#: ../../quickstart.md:62
-msgid "Examples"
-msgstr ""
+"mikoでは`Manager`クラスのメソッド`render`を使うことでテンプレートの継承をすることができます。  "
+"(それか`Template`クラスのメソッド`extends`を使うことでもできます。)"
 
 #: ../../quickstart.md:63
+msgid "Examples"
+msgstr "例"
+
+#: ../../quickstart.md:64
 msgid "base.html"
 msgstr ""
 
-#: ../../quickstart.md:76
+#: ../../quickstart.md:77
 msgid "page1.html"
 msgstr ""
 
-#: ../../quickstart.md:90
-msgid "Escape"
-msgstr ""
-
 #: ../../quickstart.md:91
+msgid "Escape"
+msgstr "エスケープ"
+
+#: ../../quickstart.md:92
 msgid ""
 "If you place the user name and description fields in the template, it is "
 "better to escape them to prevent XSS injection.   If you are going to do "
 "that escaping, you should do the following:"
 msgstr ""
+"もしユーザー名やユーザープロフィールなどをテンプレートに入れる場合はXSSインジェクション対策でエスケープをした方が良いです。  "
+"それは以下のようにすることでできます。"
 
-#: ../../quickstart.md:98
+#: ../../quickstart.md:99
 msgid ""
 "Yes, you can use the built-in `escape` function.   The `escape` function "
 "is a function of `html`, the Python standard library."
 msgstr ""
-
-#: ../../quickstart.md:100
-msgid "Notes"
-msgstr ""
+"Yeah, あなたはビルトインの`escape`関数を使うことでエスケープができます。  "
+"(この関数はPython標準のライブラリの`html`にある関数です。)"
 
 #: ../../quickstart.md:101
+msgid "Notes"
+msgstr "備考"
+
+#: ../../quickstart.md:102
 msgid ""
 "If you want to automate this escaping, you can use the `adjustors` "
 "argument of the constructor of the `Template` class.   (If you are using "
 "`Manager`, pass it to `Manager`.)"
 msgstr ""
-
-#: ../../quickstart.md:104
-msgid "About the name miko"
-msgstr ""
+"もしこのエスケープを自動でやって欲しいのなら`Template`クラスの引数`adjustors`を使えば良さそうです。  "
+"(もし`Manager`クラスを使っているのなら`Manager`クラスにその引数の値を渡しましょう。)"
 
 #: ../../quickstart.md:105
+msgid "About the name miko"
+msgstr "mikoの名前について"
+
+#: ../../quickstart.md:106
 msgid ""
 "That it is not pronounced \"maiko\".   A miko (巫女 - sibyl) is a woman who"
 " serves the Japanese gods and is found in jinja (神社 - shrines).   I named"
@@ -171,4 +189,6 @@ msgid ""
 "maiden looks like, search for `巫女`.   (If you're an anime fan, you may "
 "know this.)"
 msgstr ""
+"この名前の元は「巫女」です。  "
+"なぜ巫女にしたかというとPythonの界隈で有名なテンプレートエンジンであるjinjaの神社にいるからで、jinjaではないもう一つのテンプレートエンジンの選択肢ということでつけた名前です。"
 

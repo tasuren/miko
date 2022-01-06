@@ -6,7 +6,7 @@ from typing import Iterator
 
 
 def extract_blocks(template: str) -> Iterator[tuple[int, bool, str]]:
-    """Extract a block of tempylate from a string.
+    """Extract a block of template from a string.
 
     Parameters
     ----------

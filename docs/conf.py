@@ -63,8 +63,9 @@ source_suffix = {
     '.txt': 'markdown',
     '.md': 'markdown',
 }
+autodoc_member_order = 'bysource'
 
 # 多言語対応
-language = 'en'
+language = None
 gettext_compact = False
 locale_dirs = ['locale/']

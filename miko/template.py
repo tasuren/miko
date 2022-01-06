@@ -248,7 +248,7 @@ class Template:
         This is provided to render and embed another template within the template.  
         It seems the method of the class needs to be instantiated, which might seem cumbersome, the block is passed an instance of this class, ``self``, when the template is rendered.  
         So you can use this method in a template as follows:  
-        ``self.extends("template_path", keyword-arguments)``
+        ``^^ self.extends("template_path", keyword-arguments) ^^``
 
         Parameters
         ----------
@@ -287,15 +287,16 @@ class Template:
 
         Notes
         -----
-        If you are extending a web page, the arguments to ``extends`` may seem to be too long.  
-        In such a case, when instantiating the :class:`miko.manager.Manager` class, you can put a function that executes its short ``extends`` method in the ``extends`` argument.  
-        Like bellow:
+        Maybe the arguments of ``extends`` become too long and troublesome when you extend the web page.
+        In such a case, you can create a function that calls this function internally and put it in the argument ``extends`` of the :class:`miko.manager.Manager`.
+        This way it will be like an alias and more efficient.
+        For example, you can do something like the following.
 
         .. code-block:: python
             :caption: Backend
 
             def blog(title, content, script=""):
-                return template.extends(
+                return manager.render(
                     "base.html", script=script, title=title, content=content
                 )
 
