@@ -1,4 +1,4 @@
-[![PyPI](https://img.shields.io/pypi/v/miko-tpl)](https://pypi.org/project/miko-tpl/) ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/miko-tpl) ![PyPI - Downloads](https://img.shields.io/pypi/dm/miko-tpl) ![PyPI - License](https://img.shields.io/pypi/l/miko-tpl) [![Documentation Status](https://readthedocs.org/projects/miko/badge/?version=latest)](https://miko.readthedocs.io/en/latest/?badge=latest)
+[![PyPI](https://img.shields.io/pypi/v/miko-tpl)](https://pypi.org/project/miko-tpl/) ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/miko-tpl) ![PyPI - Downloads](https://img.shields.io/pypi/dm/miko-tpl) ![PyPI - License](https://img.shields.io/pypi/l/miko-tpl) [![Documentation Status](https://readthedocs.org/projects/miko/badge/?version=latest)](https://miko.readthedocs.io/en/latest/?badge=latest) [![Discord](https://img.shields.io/discord/777430548951728149?label=chat&logo=discord)](https://discord.gg/kfMwZUyGFG)
 # miko
 miko is a pythonic template engine that is little, lightweight and fast.
 
