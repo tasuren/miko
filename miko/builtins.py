@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from collections import defaultdict
 from html import escape
 from os import stat
 
@@ -11,7 +12,7 @@ from .utils import _get_all
 __all__ = ("include", "escape", "truncate", "CS")
 
 
-_include_caches: list = [0, None]
+_include_caches: defaultdict[str, list] = defaultdict(lambda : [0, None])
 def include(path: str) -> str:
     """Insert other files.
 
@@ -28,12 +29,12 @@ def include(path: str) -> str:
     --------
     Template.extends : Render and embed other files."""
     mtime = stat(path).st_mtime
-    if mtime == _include_caches[0]:
-        return _include_caches[1]
-    _include_caches[0] = mtime
+    if mtime == _include_caches[path][0]:
+        return _include_caches[path][1]
+    _include_caches[path][0] = mtime
     with open(path, "r") as f:
-        _include_caches[1] = f.read()
-    return _include_caches[1]
+        _include_caches[path][1] = f.read()
+    return _include_caches[path][1]
 
 
 def truncate(text: str, length: int = 255, end: str = "...") -> str:
