@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Callable, Union, Optional, Any, DefaultDict
+from typing import TYPE_CHECKING, Callable, Union, Optional, Any, DefaultDict
 
 from importlib._bootstrap_external import _code_type
 from inspect import cleandoc
@@ -14,6 +14,9 @@ from collections import defaultdict
 from .builtins import _builtins, include
 from .utils import _executor_function
 from .parser import extract_blocks
+
+if TYPE_CHECKING:
+    from .manager import Manager
 
 
 __all__ = (
@@ -154,6 +157,7 @@ class Template:
 
     __original_kwargs__: dict
     __option_kwargs__: dict
+    manager: Optional[Manager] = None
 
     def __init__(
         self, template: str, *, path: str = "unknown",
@@ -213,6 +217,8 @@ class Template:
         if include_globals:
             kwargs.update(globals())
         kwargs["self"] = self
+        if hasattr(self, "manager"):
+            kwargs["manager"] = self
         # ビルトインを混ぜる。
         kwargs.update(self.builtins)
         for decorator in self.adjustors:

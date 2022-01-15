@@ -34,7 +34,6 @@ class Manager:
     ):
         self.args, self.kwargs, self.template_cls = args, kwargs, template_cls
         self.extends = extends or {}
-        self.extends["manager"] = self
 
     def get_template(self, path: str, *args, **kwargs: dict) -> Template:
         """Prepare template from file.
@@ -53,6 +52,7 @@ class Manager:
         template = self.template_cls.from_file(
             path, *(args or self.args), **(kwargs or self.kwargs)
         )
+        template.manager = self
         if self.extends:
             for key, value in self.extends.items():
                 setattr(template, key, value)
