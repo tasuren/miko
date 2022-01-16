@@ -218,7 +218,7 @@ class Template:
             kwargs.update(globals())
         kwargs["self"] = self
         if hasattr(self, "manager"):
-            kwargs["manager"] = self
+            kwargs["manager"] = self.manager
         # ビルトインを混ぜる。
         kwargs.update(self.builtins)
         for decorator in self.adjustors:
