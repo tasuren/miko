@@ -1,6 +1,6 @@
 # miko - Utils
 
-from asyncio import get_event_loop, new_event_loop
+from asyncio import get_running_loop, new_event_loop
 
 
 def _get_all(globals_, all_, mode="dict"):
@@ -19,7 +19,7 @@ async def _executor_function(function, loop, *args, **kwargs):
     close = False
     if loop is None:
         try:
-            loop = get_event_loop()
+            loop = get_running_loop()
         except RuntimeError:
             loop = new_event_loop()
             close = True

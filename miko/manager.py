@@ -4,9 +4,6 @@ from __future__ import annotations
 
 from typing import Type, Optional
 
-from asyncio import AbstractEventLoop
-
-from .utils import _executor_function
 from .template import Template, Any
 
 
@@ -35,6 +32,12 @@ class Manager:
         self.args, self.kwargs, self.template_cls = args, kwargs, template_cls
         self.extends = extends or {}
 
+    def _prepare_template(self, template):
+        template.manager = self
+        if self.extends:
+            for key, value in self.extends.items():
+                setattr(template, key, value)
+
     def get_template(self, path: str, *args, **kwargs: dict) -> Template:
         """Prepare template from file.
 
@@ -42,6 +45,9 @@ class Manager:
         ----------
         path : str
             The path to the file.
+        *args
+            Arguments to pass to :meth:`miko.template.Template.from_file`.  
+            By default, ``kwargs`` passed when you instantiate this class is used.
         **kwargs
             Keyword arguments to pass to :meth:`miko.template.Template.from_file`.  
             By default, ``kwargs`` passed when you instantiate this class is used.
@@ -52,10 +58,26 @@ class Manager:
         template = self.template_cls.from_file(
             path, *(args or self.args), **(kwargs or self.kwargs)
         )
-        template.manager = self
-        if self.extends:
-            for key, value in self.extends.items():
-                setattr(template, key, value)
+        self._prepare_template(template)
+        return template
+
+    async def aio_get_template(self, path: str, *args, **kwargs) -> Template:
+        """This is an asynchronous version of version for :meth:`miko.manager.Manager.get_template`.
+
+        Parameters
+        ----------
+        path : str
+            The path to the file.
+        *args
+            Arguments to pass to :meth:`miko.template.Template.aio_from_file`.  
+            By default, ``kwargs`` passed when you instantiate this class is used.
+        **kwargs
+            Keyword arguments to pass to :meth:`miko.template.Template.aio_from_file`.  
+            By default, ``kwargs`` passed when you instantiate this class is used."""
+        template = await self.template_cls.aio_from_file(
+            path, *(args or self.args), **(kwargs or self.kwargs)
+        )
+        self._prepare_template(template)
         return template
 
     def render(self, path: str, **kwargs) -> str:
@@ -90,19 +112,13 @@ class Manager:
           manager.render("users.html", title=title)"""
         return self.get_template(path).render(**kwargs)
 
-    async def aiorender(
-        self, *args, eloop: Optional[AbstractEventLoop] = None, **kwargs
-    ) -> str:
-        """This is an asynchronous version of version for :meth:`miko.manager.Manager.render`.  
-        Use the ``run_in_executor`` of event loop.
+    async def aiorender(self, path: str, **kwargs) -> str:
+        """This is an asynchronous version of version for :meth:`miko.manager.Manager.render`.
 
         Parameters
         ----------
-        *args
-            Arguments to pass to :meth:`miko.manager.Manager.render`.
-        eloop : AbstractEventLoop, optional
-            The event loop to use.  
-            If not specified, it will be obtained automatically.
+        path : str
+            The path to the file.
         **kwargs
-            Keyword arguments to pass to :meth:`miko.manager.Manager.render`"""
-        return await _executor_function(self.render, eloop, *args, **kwargs)
+            Keyword arguments to pass to :meth:`miko.template.Template.aiorender`"""
+        return await (await self.aio_get_template(path)).aiorender(**kwargs)

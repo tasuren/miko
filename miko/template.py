@@ -2,17 +2,16 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Callable, Union, Optional, Any, DefaultDict
+from typing import TYPE_CHECKING, Union, Optional, Any
+from collections.abc import Callable, Coroutine
 
 from importlib._bootstrap_external import _code_type
 from inspect import cleandoc
 import ast
 
-from asyncio import AbstractEventLoop
 from collections import defaultdict
 
-from .builtins import _builtins, include
-from .utils import _executor_function
+from .builtins import _builtins, include, aioinclude
 from .parser import extract_blocks
 
 if TYPE_CHECKING:
@@ -23,9 +22,9 @@ __all__ = (
     "TypeMikoFunction", "DEFAULT_BUILTINS", "DEFAULT_ADJUSTORS",
     "Block", "CacheManager", "caches", "Template"
 )
-TypeMikoFunction = Callable[..., Union[str, Any]]
+TypeMikoFunction = Union[Callable[..., Union[str, Any]], Callable[..., Coroutine[Any, Any, Union[str, Any]]]]
 "The type of a function that wraps the code of block."
-_BLOCK_FUNCTION_CODE = "def __miko_function(<<args>>):..."
+_BLOCK_FUNCTION_CODE = "<async>def __miko_function(<<args>>):..."
 # テンプレートにあったブロックを実行するための関数
 DEFAULT_BUILTINS = _builtins
 "Default builtins."
@@ -51,18 +50,23 @@ class Block:
         So, even if it doesn't make sense, it will work fine.
     index : int
         The number of how many blocks.  
-        This is also just used to make it easier to find the error location when an error occurs in the code within a block."""
+        This is also just used to make it easier to find the error location when an error occurs in the code within a block.
+    async_function : bool, default False
+        Whether or not to make the function of the block an asynchronous function."""
 
     def __init__(
-        self, text: str, args: tuple[str, ...], template: Optional[Template] = None, *,
-        path: str = "", index: int = 0
+        self, text: str, args: tuple[str, ...], path: str = "", index: int = 0,
+        async_function: bool = False
     ):
         self.text, self.path, self.index, self.args = text, path, index, args
-        self.template = template
 
         # ブロック内のコードを実行する関数を構成してバイトコンパイルする。
-        code = ast.parse(_BLOCK_FUNCTION_CODE.replace("<<args>>", ",".join(self.args), 1))
-        assert isinstance(code.body[-1], ast.FunctionDef)
+        code = ast.parse(
+            _BLOCK_FUNCTION_CODE
+                .replace("<<args>>", ",".join(self.args), 1)
+                .replace("<async>", "async " if async_function else "", 1)
+        )
+        assert isinstance(code.body[-1], (ast.FunctionDef, ast.AsyncFunctionDef))
         del code.body[-1].body[-1]
         cleaned_block = cleandoc(self.text)
         if isinstance((block_code := ast.parse(cleaned_block)).body[-1], ast.Expr):
@@ -89,12 +93,13 @@ class CacheManager:
     block_caches : DefaultDict[str, dict[tuple[str, ...], dict[int, Block]]]
     filter_caches : dict[str, Callable]"""
 
-    block_caches: DefaultDict[str, dict[tuple[str, ...], dict[int, Block]]] = \
+    block_caches: defaultdict[str, dict[tuple[str, ...], dict[int, Block]]] = \
         defaultdict(lambda : defaultdict(dict))
     "Dictionary where the cache is stored."
 
     def get_block(
-        self, path: str, args: tuple[str, ...], index: int, text: str
+        self, path: str, args: tuple[str, ...], index: int, text: str,
+        async_function: bool = False
     ) -> Block:
         """Turn the string in the passed block into a block object.  
         It also creates a cache and returns the cache the next time the same string is passed.
@@ -114,7 +119,9 @@ class CacheManager:
             This is associated in the block cache and must be unique for each block.  
             It is also used for error messages for code in the block.
         text : str
-            The string of the block."""
+            The string of the block.
+        async_function : bool, default False
+            Whether or not to make the function of the block an asynchronous function."""
         block, update = self.block_caches[path][args].get(index), False
         if block is None:
             update = True
@@ -124,7 +131,7 @@ class CacheManager:
             update = True
         if update:
             self.block_caches[path][args][index] = block = Block(
-                text, args, path=path, index=index
+                text, args, path, index,async_function
             )
         assert block is not None
         return block
@@ -177,18 +184,35 @@ class Template:
         return self
 
     @classmethod
-    def from_file(cls, path: str, *args, **kwargs) -> Template:
+    def from_file(cls, path: str, **kwargs) -> Template:
         """Prepare template from file easily.
 
         Parameters
         ----------
         path : str
             The path to the file.
-        *args
-            Arguments to be used when instantiating the :class:`miko.template.Template`.
         **kwargs
             Keyword arguments to be used when instantiating the :class:`miko.template.Template`."""
-        return cls(include(path), path=path, *args, **kwargs)
+        return cls(include(path), path=path, **kwargs)
+
+    @classmethod
+    async def aio_from_file(cls, path: str, **kwargs) -> Template:
+        """This is an asynchronous version of version for :meth:`miko.template.Template.from_file`.  
+        Parameters is same as :meth:`miko.template.Template.from_file`."""
+        return cls(await aioinclude(path), path=path, **kwargs)
+
+    def _prepare_render(self, kwargs, include_globals):
+        # グローバルなものを混ぜる。
+        if include_globals:
+            kwargs.update(globals())
+        kwargs["self"] = self
+        if hasattr(self, "manager"):
+            kwargs["manager"] = self.manager
+        # ビルトインを混ぜる。
+        kwargs.update(self.builtins)
+        for decorator in self.adjustors:
+            decorator(self, kwargs)
+        return tuple(kwargs.keys())
 
     def render(self, include_globals: bool = True, **kwargs) -> str:
         """Render the template.
@@ -213,40 +237,30 @@ class Template:
         (I don't think anyone would do that.)  
         So you should keep the value name constant.  
         Also, if the code in the block is made to be time-consuming, rendering will take time."""
-        # グローバルなものを混ぜる。
-        if include_globals:
-            kwargs.update(globals())
-        kwargs["self"] = self
-        if hasattr(self, "manager"):
-            kwargs["manager"] = self.manager
-        # ビルトインを混ぜる。
-        kwargs.update(self.builtins)
-        for decorator in self.adjustors:
-            decorator(self, kwargs)
-        # ブロックの中身を実行していく。
-        args = tuple(kwargs.keys())
+        args = self._prepare_render(kwargs, include_globals)
         return "".join(
             str(caches.get_block(self.path, args, index, text).function(**kwargs))
             if is_block else text
             for index, is_block, text in extract_blocks(self.template)
         )
 
-    async def aiorender(
-        self, *args, eloop: Optional[AbstractEventLoop] = None, **kwargs
-    ) -> str:
-        """This is an asynchronous version of :meth:`miko.template.Template.render`.  
-        Use the ``run_in_executor`` of event loop.
+    async def aiorender(self, include_globals: bool = True, **kwargs) -> str:
+        """This is an asynchronous version of :meth:`miko.template.Template.render`.
 
         Parameters
         ----------
-        *args
-            Arguments to pass to :meth:`miko.template.Template.render`.
-        eloop : AbstractEventLoop, optional
-            The event loop to use.  
-            If not specified, it will be obtained automatically.
+        include_globals : bool, default True
+            Whether to include the data in the dictionary that can be retrieved by ``globals()`` in the variables passed to the code in the block.
         **kwargs
-            Keyword arguments to pass to :meth:`miko.template.Template.render`."""
-        return await _executor_function(self.render, eloop, *args, **kwargs)
+            The name and value dictionary of the value to pass to the template.  
+            Pass the value you want to use in the code in the block."""
+        args = self._prepare_render(kwargs, include_globals)
+        return "".join([
+            str(await caches.get_block(self.path, args, index, text, True)
+                    .function(**kwargs)) # type: ignore
+            if is_block else text
+            for index, is_block, text in extract_blocks(self.template)
+        ])
 
     def extends(self, path: str, **kwargs) -> str:
         """Renders the file in the passed path with this class instanced by the options passed when instantiating this class.  
@@ -317,3 +331,16 @@ class Template:
                 \"\"\"
             ) ^^"""
         return self.__class__.from_file(path, **self.__option_kwargs__).render(**kwargs)
+
+    async def aioextends(self, path: str, **kwargs) -> str:
+        """This is an asynchronous version of :meth:`miko.template.Template.extends`.
+
+        Parameters
+        ----------
+        path : str
+            The path to a template.
+        **kwargs
+            Keyword arguments to pass to :meth:`miko.template.Template.render`."""
+        return await (
+            await self.__class__.aio_from_file(path, **self.__option_kwargs__)
+        ).aiorender(**kwargs)

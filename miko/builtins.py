@@ -6,7 +6,7 @@ from collections import defaultdict
 from html import escape
 from os import stat
 
-from .utils import _get_all
+from .utils import _get_all, _executor_function
 
 
 __all__ = ("include", "escape", "truncate", "CS")
@@ -35,6 +35,16 @@ def include(path: str) -> str:
     with open(path, "r") as f:
         _include_caches[path][1] = f.read()
     return _include_caches[path][1]
+
+
+async def aioinclude(path: str) -> str:
+    """This is an asynchronous version of version for :func:`miko.builtins.include`.  
+    Use the ``run_in_executor`` of event loop.
+
+    Parameters
+    ----------
+    path : str"""
+    return await _executor_function(include, None, path)
 
 
 def truncate(text: str, length: int = 255, end: str = "...") -> str:
