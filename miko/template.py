@@ -2,8 +2,7 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Union, Optional, Any
-from collections.abc import Callable, Coroutine
+from typing import TYPE_CHECKING, Callable, Coroutine, Union, Optional, Any
 
 from importlib._bootstrap_external import _code_type
 from inspect import cleandoc
