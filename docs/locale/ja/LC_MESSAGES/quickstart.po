@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: miko # miko by tasuren\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-01-06 18:00+0900\n"
+"POT-Creation-Date: 2022-01-18 21:47+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -113,8 +113,7 @@ msgstr "`Manager`クラスのインスタンス：`manager` (もしレンダリ�
 msgid ""
 "miko is still waiting for a PullRequest in the GitHub repository as there"
 " are not many yet."
-msgstr "まだビルトインは少ないです...  "
-"mikoはPullRequestをお待ちしております！"
+msgstr "まだビルトインは少ないです...  mikoはPullRequestをお待ちしております！"
 
 #: ../../quickstart.md:60
 msgid "Inheriting Templates"
@@ -130,7 +129,7 @@ msgstr ""
 "mikoでは`Manager`クラスのメソッド`render`を使うことでテンプレートの継承をすることができます。  "
 "(それか`Template`クラスのメソッド`extends`を使うことでもできます。)"
 
-#: ../../quickstart.md:63
+#: ../../quickstart.md:63 ../../quickstart.md:93
 msgid "Examples"
 msgstr "例"
 
@@ -143,10 +142,29 @@ msgid "page1.html"
 msgstr ""
 
 #: ../../quickstart.md:91
+msgid "Make alias for Inheriting Templates"
+msgstr "テンプレートの継承のエイリアスの作成"
+
+#: ../../quickstart.md:92
+msgid ""
+"By using the extends argument and attributes of the ``Manager`` class, it"
+" is possible to create an alias for ``manager.render`` that inherits from"
+" the template."
+msgstr "``Manager`` クラスの引数そして属性である ``extends`` を使うことで ``manager.render`` のエイリアスなるものを作ることが可能です。"
+
+#: ../../quickstart.md:94
+msgid "Python"
+msgstr ""
+
+#: ../../quickstart.md:103
+msgid "HTML"
+msgstr ""
+
+#: ../../quickstart.md:116
 msgid "Escape"
 msgstr "エスケープ"
 
-#: ../../quickstart.md:92
+#: ../../quickstart.md:117
 msgid ""
 "If you place the user name and description fields in the template, it is "
 "better to escape them to prevent XSS injection.   If you are going to do "
@@ -155,7 +173,7 @@ msgstr ""
 "もしユーザー名やユーザープロフィールなどをテンプレートに入れる場合はXSSインジェクション対策でエスケープをした方が良いです。  "
 "それは以下のようにすることでできます。"
 
-#: ../../quickstart.md:99
+#: ../../quickstart.md:124
 msgid ""
 "Yes, you can use the built-in `escape` function.   The `escape` function "
 "is a function of `html`, the Python standard library."
@@ -163,11 +181,11 @@ msgstr ""
 "Yeah, あなたはビルトインの`escape`関数を使うことでエスケープができます。  "
 "(この関数はPython標準のライブラリの`html`にある関数です。)"
 
-#: ../../quickstart.md:101
+#: ../../quickstart.md:126
 msgid "Notes"
 msgstr "備考"
 
-#: ../../quickstart.md:102
+#: ../../quickstart.md:127
 msgid ""
 "If you want to automate this escaping, you can use the `adjustors` "
 "argument of the constructor of the `Template` class.   (If you are using "
@@ -176,11 +194,40 @@ msgstr ""
 "もしこのエスケープを自動でやって欲しいのなら`Template`クラスの引数`adjustors`を使えば良さそうです。  "
 "(もし`Manager`クラスを使っているのなら`Manager`クラスにその引数の値を渡しましょう。)"
 
-#: ../../quickstart.md:105
+#: ../../quickstart.md:130
+msgid "Share variables with other blocks"
+msgstr "他のブロックに変数を共有する"
+
+#: ../../quickstart.md:131
+msgid ""
+"The template class :class:`miko.template.Template`, an instance of "
+"``self``, is available in templates.   By adding a new attribute to this "
+"``self``, you can carry the value over to another block in the template."
+msgstr ""
+"テンプレートクラスの :class:`miko.template.Template` のインスタンスが入る ``self`` "
+"はテンプレート内で使えます。  この ``self`` に新しい属性を追加して値を設定することで他のブロックに値を持ち越すことができます。"
+
+#: ../../quickstart.md:141
+msgid "Asynchronous Support"
+msgstr "非同期のサポート"
+
+#: ../../quickstart.md:142
+msgid ""
+"miko has good asynchronous support.   There is an ``aiorender`` method, "
+"so use it.   You can also use ``await`` in templates that render "
+"asynchronously to allow other asynchronous functions to be rendered "
+"asynchronously."
+msgstr ""
+"mikoはしっかり非同期にも対応しています。  mikoのテンプレートクラスやそのテンプレートを管理するためのクラスである ``Manager``"
+" には、レンダリング関数である ``render`` の非同期版である ``aiorender`` があります。  "
+"そして、これを使って非同期でレンダリングした場合は、レンダリングするテンプレート内で ``await`` "
+"を使って他の非同期関数を実行することができます。"
+
+#: ../../quickstart.md:152
 msgid "About the name miko"
 msgstr "mikoの名前について"
 
-#: ../../quickstart.md:106
+#: ../../quickstart.md:153
 msgid ""
 "That it is not pronounced \"maiko\".   A miko (巫女 - sibyl) is a woman who"
 " serves the Japanese gods and is found in jinja (神社 - shrines).   I named"

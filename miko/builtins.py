@@ -9,7 +9,7 @@ from os import stat
 from .utils import _get_all, _executor_function
 
 
-__all__ = ("include", "escape", "truncate", "CS")
+__all__ = ("include", "aioinclude", "escape", "truncate", "CS")
 
 
 _include_caches: defaultdict[str, list] = defaultdict(lambda : [0, None])

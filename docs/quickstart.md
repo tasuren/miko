@@ -88,6 +88,31 @@ In miko, you can inherit templates by using the attribute `render` of the instan
 ^^
 ```
 
+## Make alias for Inheriting Templates
+By using the extends argument and attributes of the ``Manager`` class, it is possible to create an alias for ``manager.render`` that inherits from the template.
+### Examples
+#### Python
+```python
+manager = Manager()
+
+def blog(title, main, header=""):
+    return manager.render("base.html", title=title, main=main, header="")
+
+manager.extends["blog"] = blog
+```
+#### HTML
+```html
+^^
+  self.blog(
+    "title", """
+    <h1>Main content</h1>
+    """,
+    "<script ...></script>"
+  )
+  # Aliase for `manager.render(title="title", ...)`
+^^
+```
+
 ## Escape
 If you place the user name and description fields in the template, it is better to escape them to prevent XSS injection.  
 If you are going to do that escaping, you should do the following:
@@ -101,6 +126,28 @@ The `escape` function is a function of `html`, the Python standard library.
 ### Notes
 If you want to automate this escaping, you can use the `adjustors` argument of the constructor of the `Template` class.  
 (If you are using `Manager`, pass it to `Manager`.)
+
+## Share variables with other blocks
+The template class :class:`miko.template.Template`, an instance of ``self``, is available in templates.  
+By adding a new attribute to this ``self``, you can carry the value over to another block in the template.
+```html
+^^ self.BASE_URL = "https://tasuren.f5.si/"; "" # Return null text ^^
+
+...
+
+<a href="^^ f'{self.BASE_URL}portfolio' ^^">Go to portfolio.</a>
+```
+
+## Asynchronous Support
+miko has good asynchronous support.  
+There is an ``aiorender`` method, so use it.  
+You can also use ``await`` in templates that render asynchronously to allow other asynchronous functions to be rendered asynchronously.
+```html
+^^ self.user = await self.app.fetch_user(user_id) ^^
+
+<h1>^^ escape(user.name) ^^'s profile</h1>
+<div class="details">^^ escape(user.details) ^^</div>
+```
 
 ## About the name miko
 That it is not pronounced "maiko".  

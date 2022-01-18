@@ -32,7 +32,7 @@ msgstr ""
 
 #: ../../index.rst:18
 msgid "Document"
-msgstr ""
+msgstr "ドキュメント"
 
 #: ../../index.rst:18
 msgid "Links:"

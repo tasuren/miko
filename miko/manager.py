@@ -47,7 +47,7 @@ class Manager:
             The path to the file.
         *args
             Arguments to pass to :meth:`miko.template.Template.from_file`.  
-            By default, ``kwargs`` passed when you instantiate this class is used.
+            By default, ``args`` passed when you instantiate this class is used.
         **kwargs
             Keyword arguments to pass to :meth:`miko.template.Template.from_file`.  
             By default, ``kwargs`` passed when you instantiate this class is used.
@@ -70,7 +70,7 @@ class Manager:
             The path to the file.
         *args
             Arguments to pass to :meth:`miko.template.Template.aio_from_file`.  
-            By default, ``kwargs`` passed when you instantiate this class is used.
+            By default, ``args`` passed when you instantiate this class is used.
         **kwargs
             Keyword arguments to pass to :meth:`miko.template.Template.aio_from_file`.  
             By default, ``kwargs`` passed when you instantiate this class is used."""
@@ -109,7 +109,7 @@ class Manager:
         .. code-block:: python
           :caption: Backend
 
-          manager.render("users.html", title=title)"""
+          manager.render("template.html", title=title)"""
         return self.get_template(path).render(**kwargs)
 
     async def aiorender(self, path: str, **kwargs) -> str:

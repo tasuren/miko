@@ -253,7 +253,11 @@ class Template:
             Whether to include the data in the dictionary that can be retrieved by ``globals()`` in the variables passed to the code in the block.
         **kwargs
             The name and value dictionary of the value to pass to the template.  
-            Pass the value you want to use in the code in the block."""
+            Pass the value you want to use in the code in the block.
+
+        Notes
+        -----
+        You can use ``await`` and call asynchronous functions in the template rendered by this method."""
         args = self._prepare_render(kwargs, include_globals)
         return "".join([
             str(await caches.get_block(self.path, args, index, text, True)
@@ -315,12 +319,14 @@ class Template:
         .. code-block:: python
             :caption: Backend
 
+            manager = miko.Manager()
+
             def blog(title, content, script=""):
                 return manager.render(
                     "base.html", script=script, title=title, content=content
                 )
 
-            manager = miko.Manager(extends={"blog": blog})
+            manager.extends["blog"] = blog
 
         .. code-block:: python
             :caption: HTML
@@ -340,7 +346,7 @@ class Template:
         path : str
             The path to a template.
         **kwargs
-            Keyword arguments to pass to :meth:`miko.template.Template.render`."""
+            Keyword arguments to pass to :meth:`miko.template.Template.aiorender`."""
         return await (
             await self.__class__.aio_from_file(path, **self.__option_kwargs__)
         ).aiorender(**kwargs)
