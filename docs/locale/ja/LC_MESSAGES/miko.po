@@ -256,7 +256,7 @@ msgstr "これは :meth:`miko.manager.Manager.render` の非同期バージョ�
 
 #: miko.manager.Manager.aiorender:5 of
 msgid "Keyword arguments to pass to :meth:`miko.template.Template.aiorender`"
-msgstr ":meth:`miko.template.Template.render` に渡すキーワード引数です。"
+msgstr ":meth:`miko.template.Template.aiorender` に渡すキーワード引数です。"
 
 #: ../../miko.rst:24
 msgid "miko.parser module"
