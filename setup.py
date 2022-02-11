@@ -37,6 +37,9 @@ setup(
     license='MIT',
     keywords='template engine',
     packages=["miko"],
+    package_data={
+        "miko": ("py.typed",)
+    },
     install_requires=[],
     extras_requires={},
     python_requires='>=3.8.0',
