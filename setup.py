@@ -29,7 +29,6 @@ setup(
     long_description_content_type="text/markdown",
     url=f'https://github.com/tasuren/{NAME}',
     project_urls={
-        "Source Code": f"https://github.com/tasuren/miko",
         "Documentation": f"https://{NAME}.readthedocs.io/"
     },
     author=author,
