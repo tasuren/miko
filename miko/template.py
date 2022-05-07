@@ -2,7 +2,8 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Callable, Coroutine, Union, Optional, Any
+from typing import TYPE_CHECKING, TypeAlias, Any
+from collections.abc import Callable, Coroutine
 
 from importlib._bootstrap_external import _code_type
 from inspect import cleandoc
@@ -21,15 +22,15 @@ __all__ = (
     "TypeMikoFunction", "DEFAULT_BUILTINS", "DEFAULT_ADJUSTORS",
     "Block", "CacheManager", "caches", "Template"
 )
-TypeMikoFunction = Union[Callable[..., Union[str, Any]], Callable[..., Coroutine[Any, Any, Union[str, Any]]]]
+TypeMikoFunction: TypeAlias = Callable[..., Coroutine[Any, Any, str | Any] | str | Any]
 "The type of a function that wraps the code of block."
 _BLOCK_FUNCTION_CODE = "<async>def __miko_function(<<args>>):..."
 # テンプレートにあったブロックを実行するための関数
 DEFAULT_BUILTINS = _builtins
 "Default builtins."
-DEFAULT_ADJUSTORS = [] # type: ignore
+DEFAULT_ADJUSTORS: list[Adjustor] = []
 "Default adjustors. (Empty)"
-Adjustor = Callable[["Template", dict], Any]
+Adjustor: TypeAlias = Callable[["Template", dict], Any]
 "Type of adjustor."
 
 
@@ -73,7 +74,7 @@ class Block:
             block_code.body.append(ast.Return(block_code.body.pop(-1).value)) # type: ignore
         code.body[-1].body.extend(block_code.body)
         ast.fix_missing_locations(code)
-        code = compile(code, f"<{self.index}th block of {self.path} template>", "exec")
+        code = compile(code, f"{self.index}th block of {self.path} template>", "exec")
         assert isinstance(code, _code_type)
         # 関数を作る。
         namespace: dict[str, Any] = {}
@@ -163,7 +164,7 @@ class Template:
 
     __original_kwargs__: dict
     __option_kwargs__: dict
-    manager: Optional[Manager] = None
+    manager: Manager | None = None
 
     def __init__(
         self, template: str, *, path: str = "unknown",

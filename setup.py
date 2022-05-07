@@ -41,10 +41,8 @@ setup(
     },
     install_requires=[],
     extras_requires={},
-    python_requires='>=3.8.0',
+    python_requires='>=3.10.0',
     classifiers=[
-        'Programming Language :: Python :: 3.8',
-        'Programming Language :: Python :: 3.9',
         'Programming Language :: Python :: 3.10',
         "Topic :: Text Processing :: Markup :: HTML",
         'Typing :: Typed'

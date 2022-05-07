@@ -2,7 +2,10 @@
 
 from __future__ import annotations
 
-from typing import Iterator
+from collections.abc import Iterator
+
+
+__all__ = ("extract_blocks",)
 
 
 def extract_blocks(template: str) -> Iterator[tuple[int, bool, str]]:

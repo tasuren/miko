@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional
-
 from .template import Template, Any
 
 
@@ -26,8 +24,8 @@ class Manager:
         Keyword arguments to pass to :class:`miko.template.Template`."""
 
     def __init__(
-        self, *args, template_cls: Type[Template] = Template,
-        extends: Optional[dict[str, Any]] = None, **kwargs
+        self, *args, template_cls: type[Template] = Template,
+        extends: dict[str, Any] | None = None, **kwargs
     ):
         self.args, self.kwargs, self.template_cls = args, kwargs, template_cls
         self.extends = extends or {}
