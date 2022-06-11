@@ -2,7 +2,7 @@
 # miko
 miko is a pythonic template engine that is little, lightweight and fast.
 
-**WARNING**. 
+**WARNING**  
 This project has been migrated as a separate project.  
 So if you want to use this library, please use [this post-migration library](https://github.com/tasuren/tempylate) instead.
 
